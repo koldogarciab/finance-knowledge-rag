@@ -179,3 +179,17 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+# Project-specific secrets and generated artefacts
+.env
+.env.*
+!.env.example
+
+# Vector databases and generated indexes
+vector_store/
+*.faiss
+*.index
+
+# Notebook and Python caches
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
