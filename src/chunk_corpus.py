@@ -3,10 +3,16 @@ from pathlib import Path
 from statistics import mean
 import json
 
+from transformers import AutoTokenizer
+
 
 RECORDS_PATH = Path("data/processed/corpus_records.jsonl")
 CHUNKS_PATH = Path("data/processed/corpus_chunks.jsonl")
 MANIFEST_PATH = Path("data/processed/chunk_manifest.json")
+
+MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+MODEL_TOKEN_LIMIT = 256
+TARGET_MAX_TOKENS = 240
 
 MAX_WORDS = 220
 OVERLAP_WORDS = 40
@@ -24,38 +30,6 @@ DOCUMENT_TITLES = {
     "DOC_JSON_001": "Finance KPI Dictionary",
     "DOC_MD_001": "FP&A Forecast Meeting Notes - 10 April 2026"
 }
-
-
-def split_into_word_chunks(
-    text: str,
-    max_words: int = MAX_WORDS,
-    overlap_words: int = OVERLAP_WORDS
-) -> list[str]:
-    """Create overlapping word windows for long narrative records."""
-    words = text.split()
-
-    if not words:
-        return []
-
-    if len(words) <= max_words:
-        return [text.strip()]
-
-    chunks: list[str] = []
-    start = 0
-
-    while start < len(words):
-        end = min(start + max_words, len(words))
-        chunk = " ".join(words[start:end]).strip()
-
-        if chunk:
-            chunks.append(chunk)
-
-        if end == len(words):
-            break
-
-        start = end - overlap_words
-
-    return chunks
 
 
 def build_locator(record: dict) -> str:
@@ -133,6 +107,82 @@ def build_retrieval_text(
     return "\n".join(header_lines) + "\n\n" + chunk_content
 
 
+def count_tokens(tokenizer, text: str) -> int:
+    encoded = tokenizer(
+        text,
+        add_special_tokens=True,
+        truncation=False
+    )
+
+    return len(encoded["input_ids"])
+
+
+def split_narrative_record(
+    record: dict,
+    tokenizer
+) -> list[str]:
+    content = record["content"].strip()
+    words = content.split()
+
+    if not words:
+        return []
+
+    full_retrieval_text = build_retrieval_text(
+        record,
+        content
+    )
+
+    if (
+        count_tokens(tokenizer, full_retrieval_text)
+        <= TARGET_MAX_TOKENS
+    ):
+        return [content]
+
+    chunks: list[str] = []
+    start = 0
+
+    while start < len(words):
+        end = min(start + MAX_WORDS, len(words))
+
+        while end > start:
+            candidate = " ".join(words[start:end])
+
+            retrieval_text = build_retrieval_text(
+                record,
+                candidate
+            )
+
+            if (
+                count_tokens(tokenizer, retrieval_text)
+                <= TARGET_MAX_TOKENS
+            ):
+                break
+
+            end -= 1
+
+        if end <= start:
+            raise ValueError(
+                "Unable to create a token-safe chunk for "
+                f"{record['record_id']}"
+            )
+
+        chunks.append(
+            " ".join(words[start:end]).strip()
+        )
+
+        if end == len(words):
+            break
+
+        next_start = end - OVERLAP_WORDS
+
+        if next_start <= start:
+            next_start = start + 1
+
+        start = next_start
+
+    return chunks
+
+
 def main() -> None:
     if not RECORDS_PATH.exists():
         raise FileNotFoundError(
@@ -153,6 +203,12 @@ def main() -> None:
                     f"Invalid JSON on line {line_number}: {error}"
                 ) from error
 
+    print(f"Loading tokenizer: {MODEL_NAME}")
+
+    tokenizer = AutoTokenizer.from_pretrained(
+        MODEL_NAME
+    )
+
     chunks: list[dict] = []
     split_record_count = 0
 
@@ -161,9 +217,28 @@ def main() -> None:
 
         if granularity in ATOMIC_GRANULARITIES:
             content_parts = [record["content"]]
-        else:
-            content_parts = split_into_word_chunks(
+
+            retrieval_text = build_retrieval_text(
+                record,
                 record["content"]
+            )
+
+            atomic_token_count = count_tokens(
+                tokenizer,
+                retrieval_text
+            )
+
+            if atomic_token_count > MODEL_TOKEN_LIMIT:
+                raise ValueError(
+                    f"Atomic record {record['record_id']} "
+                    f"contains {atomic_token_count} tokens, "
+                    f"above the model limit of "
+                    f"{MODEL_TOKEN_LIMIT}"
+                )
+        else:
+            content_parts = split_narrative_record(
+                record,
+                tokenizer
             )
 
         if len(content_parts) > 1:
@@ -176,6 +251,23 @@ def main() -> None:
             content_parts,
             start=1
         ):
+            retrieval_text = build_retrieval_text(
+                record,
+                chunk_content
+            )
+
+            token_count = count_tokens(
+                tokenizer,
+                retrieval_text
+            )
+
+            if token_count > TARGET_MAX_TOKENS:
+                raise ValueError(
+                    f"{record['record_id']} chunk "
+                    f"{chunk_index} contains {token_count} "
+                    f"tokens"
+                )
+
             metadata = dict(record["metadata"])
             metadata.update(
                 {
@@ -185,6 +277,7 @@ def main() -> None:
                     "chunk_word_count": len(
                         chunk_content.split()
                     ),
+                    "chunk_token_count": token_count,
                     "citation_locator": locator
                 }
             )
@@ -209,10 +302,7 @@ def main() -> None:
                         f"{record['document_name']} - {locator}"
                     ),
                     "content": chunk_content,
-                    "retrieval_text": build_retrieval_text(
-                        record,
-                        chunk_content
-                    ),
+                    "retrieval_text": retrieval_text,
                     "metadata": metadata
                 }
             )
@@ -225,7 +315,10 @@ def main() -> None:
             for chunk_id, count in Counter(chunk_ids).items()
             if count > 1
         ]
-        raise ValueError(f"Duplicate chunk IDs: {duplicates}")
+
+        raise ValueError(
+            f"Duplicate chunk IDs: {duplicates}"
+        )
 
     CHUNKS_PATH.parent.mkdir(parents=True, exist_ok=True)
 
@@ -258,6 +351,11 @@ def main() -> None:
         for chunk in chunks
     ]
 
+    token_counts = [
+        chunk["metadata"]["chunk_token_count"]
+        for chunk in chunks
+    ]
+
     manifest = {
         "input_file": RECORDS_PATH.as_posix(),
         "output_file": CHUNKS_PATH.as_posix(),
@@ -265,7 +363,10 @@ def main() -> None:
         "chunk_count": len(chunks),
         "split_record_count": split_record_count,
         "chunking_strategy": {
-            "method": "overlapping_word_windows",
+            "method": "token_aware_word_windows",
+            "tokenizer": MODEL_NAME,
+            "model_token_limit": MODEL_TOKEN_LIMIT,
+            "target_max_tokens": TARGET_MAX_TOKENS,
             "maximum_words": MAX_WORDS,
             "overlap_words": OVERLAP_WORDS,
             "atomic_granularities": sorted(
@@ -282,6 +383,19 @@ def main() -> None:
             "minimum": min(word_counts),
             "maximum": max(word_counts),
             "average": round(mean(word_counts), 2)
+        },
+        "chunk_token_statistics": {
+            "minimum": min(token_counts),
+            "maximum": max(token_counts),
+            "average": round(mean(token_counts), 2),
+            "texts_over_target": sum(
+                count > TARGET_MAX_TOKENS
+                for count in token_counts
+            ),
+            "texts_over_model_limit": sum(
+                count > MODEL_TOKEN_LIMIT
+                for count in token_counts
+            )
         }
     }
 
@@ -298,7 +412,7 @@ def main() -> None:
         )
         file.write("\n")
 
-    print("Corpus chunking completed successfully")
+    print("Token-aware corpus chunking completed successfully")
     print(f"Source records: {len(records)}")
     print(f"Chunks: {len(chunks)}")
     print(f"Split narrative records: {split_record_count}")
@@ -307,10 +421,17 @@ def main() -> None:
         f"{dict(sorted(chunks_by_file_type.items()))}"
     )
     print(
-        "Word count range: "
-        f"{min(word_counts)}-{max(word_counts)}"
+        "Maximum retrieval tokens: "
+        f"{max(token_counts)}"
     )
-    print(f"Average words per chunk: {mean(word_counts):.2f}")
+    print(
+        "Retrieval texts above target: "
+        f"{sum(count > TARGET_MAX_TOKENS for count in token_counts)}"
+    )
+    print(
+        "Retrieval texts above model limit: "
+        f"{sum(count > MODEL_TOKEN_LIMIT for count in token_counts)}"
+    )
     print(f"Created: {CHUNKS_PATH}")
     print(f"Created: {MANIFEST_PATH}")
 

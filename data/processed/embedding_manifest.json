@@ -1,0 +1,40 @@
+{
+  "input_file": "data/processed/corpus_chunks.jsonl",
+  "embeddings_file": "data/processed/chunk_embeddings.npy",
+  "index_file": "data/processed/embedding_index.jsonl",
+  "source_chunk_sha256": "832749dbe5b90914d49c16bb0c3df1133e96df813932c3bfc7e61f2c7b4d951a",
+  "model": {
+    "name": "sentence-transformers/all-MiniLM-L6-v2",
+    "device": "cpu",
+    "embedding_field": "retrieval_text",
+    "embedding_dimension": 384,
+    "maximum_sequence_length": 256,
+    "normalised": true
+  },
+  "encoding": {
+    "chunk_count": 316,
+    "batch_size": 32,
+    "dtype": "float32",
+    "shape": [
+      316,
+      384
+    ]
+  },
+  "token_statistics": {
+    "minimum": 30,
+    "maximum": 240,
+    "average": 148.0,
+    "texts_over_model_limit": 0
+  },
+  "norm_statistics": {
+    "minimum": 1.0,
+    "maximum": 1.0,
+    "average": 1.0
+  },
+  "library_versions": {
+    "python_runtime": "3.12.13",
+    "torch": "2.12.1+cpu",
+    "sentence_transformers": "5.6.0",
+    "numpy": "2.5.0"
+  }
+}

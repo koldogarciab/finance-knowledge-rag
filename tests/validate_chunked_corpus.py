@@ -3,25 +3,32 @@ from pathlib import Path
 import json
 import sys
 
+from transformers import AutoTokenizer
+
 
 RECORDS_PATH = Path("data/processed/corpus_records.jsonl")
 CHUNKS_PATH = Path("data/processed/corpus_chunks.jsonl")
 MANIFEST_PATH = Path("data/processed/chunk_manifest.json")
 
+MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+MODEL_TOKEN_LIMIT = 256
+TARGET_MAX_TOKENS = 240
+OVERLAP_WORDS = 40
+
 EXPECTED_CHUNKS_BY_FILE_TYPE = {
     "csv": 252,
-    "docx": 13,
+    "docx": 14,
     "json": 13,
-    "markdown": 18,
-    "pdf": 10
+    "markdown": 19,
+    "pdf": 18
 }
 
 EXPECTED_CHUNKS_BY_GRANULARITY = {
     "account_category_row": 189,
     "kpi": 13,
     "monthly_department_summary": 63,
-    "page": 10,
-    "section": 31
+    "page": 18,
+    "section": 33
 }
 
 ATOMIC_GRANULARITIES = {
@@ -29,9 +36,6 @@ ATOMIC_GRANULARITIES = {
     "monthly_department_summary",
     "kpi"
 }
-
-MAX_WORDS = 220
-OVERLAP_WORDS = 40
 
 
 def fail(message: str) -> None:
@@ -58,6 +62,16 @@ def load_jsonl(path: Path) -> list[dict]:
     return items
 
 
+def count_tokens(tokenizer, text: str) -> int:
+    encoded = tokenizer(
+        text,
+        add_special_tokens=True,
+        truncation=False
+    )
+
+    return len(encoded["input_ids"])
+
+
 for path in [RECORDS_PATH, CHUNKS_PATH, MANIFEST_PATH]:
     if not path.exists():
         fail(f"Missing file: {path}")
@@ -80,31 +94,24 @@ with MANIFEST_PATH.open("r", encoding="utf-8") as file:
 if len(records) != 305:
     fail(f"Expected 305 source records, found {len(records)}")
 
-if len(chunks) != 306:
-    fail(f"Expected 306 chunks, found {len(chunks)}")
+if len(chunks) != 316:
+    fail(f"Expected 316 chunks, found {len(chunks)}")
 
 if manifest.get("source_record_count") != len(records):
-    fail(
-        "Manifest source_record_count does not match: "
-        f"{manifest.get('source_record_count')} vs "
-        f"{len(records)}"
-    )
+    fail("Manifest source_record_count is incorrect")
 
 if manifest.get("chunk_count") != len(chunks):
-    fail(
-        "Manifest chunk_count does not match: "
-        f"{manifest.get('chunk_count')} vs {len(chunks)}"
-    )
+    fail("Manifest chunk_count is incorrect")
 
-if manifest.get("split_record_count") != 1:
+if manifest.get("split_record_count") != 10:
     fail(
-        "Manifest should report one split record, found "
+        "Manifest should report 10 split records, found "
         f"{manifest.get('split_record_count')}"
     )
 
 
 # -------------------------------------------------------------------
-# Required fields and unique IDs
+# Required fields and unique identifiers
 # -------------------------------------------------------------------
 
 required_chunk_fields = {
@@ -121,11 +128,12 @@ required_chunk_fields = {
     "metadata"
 }
 
-chunk_ids = []
 record_ids = {
     record["record_id"]
     for record in records
 }
+
+chunk_ids = []
 
 for position, chunk in enumerate(chunks, start=1):
     missing_fields = required_chunk_fields - set(chunk)
@@ -176,7 +184,7 @@ if len(chunk_ids) != len(set(chunk_ids)):
 
 
 # -------------------------------------------------------------------
-# Every source record must be represented
+# Source-record coverage
 # -------------------------------------------------------------------
 
 chunks_by_record = defaultdict(list)
@@ -185,13 +193,13 @@ for chunk in chunks:
     chunks_by_record[chunk["record_id"]].append(chunk)
 
 if set(chunks_by_record) != record_ids:
-    missing_records = record_ids - set(chunks_by_record)
-    unexpected_records = set(chunks_by_record) - record_ids
+    missing = record_ids - set(chunks_by_record)
+    unexpected = set(chunks_by_record) - record_ids
 
     fail(
         "Chunk/source record coverage mismatch. "
-        f"Missing: {sorted(missing_records)}. "
-        f"Unexpected: {sorted(unexpected_records)}"
+        f"Missing: {sorted(missing)}. "
+        f"Unexpected: {sorted(unexpected)}"
     )
 
 split_records = {
@@ -200,41 +208,23 @@ split_records = {
     if len(record_chunks) > 1
 }
 
-if len(split_records) != 1:
+if len(split_records) != 10:
     fail(
-        f"Expected exactly one split record, "
+        f"Expected 10 split records, "
         f"found {len(split_records)}"
     )
 
-split_record_id, split_chunks = next(
-    iter(split_records.items())
-)
-
-split_chunks = sorted(
-    split_chunks,
-    key=lambda item: item["metadata"]["chunk_index"]
-)
-
-if len(split_chunks) != 2:
-    fail(
-        f"{split_record_id}: expected 2 chunks, "
-        f"found {len(split_chunks)}"
-    )
-
-if split_chunks[0]["file_type"] != "pdf":
-    fail(
-        f"{split_record_id}: split record should be a PDF page"
-    )
-
-if split_chunks[0]["metadata"]["granularity"] != "page":
-    fail(
-        f"{split_record_id}: split record should have page granularity"
-    )
-
 
 # -------------------------------------------------------------------
-# Chunk numbering, sizes and metadata
+# Tokenizer and chunk-level validation
 # -------------------------------------------------------------------
+
+print(f"Loading tokenizer: {MODEL_NAME}")
+
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+
+all_word_counts = []
+all_token_counts = []
 
 for record_id, record_chunks in chunks_by_record.items():
     ordered_chunks = sorted(
@@ -244,11 +234,12 @@ for record_id, record_chunks in chunks_by_record.items():
 
     expected_count = len(ordered_chunks)
 
-    expected_indices = list(range(1, expected_count + 1))
     actual_indices = [
         chunk["metadata"]["chunk_index"]
         for chunk in ordered_chunks
     ]
+
+    expected_indices = list(range(1, expected_count + 1))
 
     if actual_indices != expected_indices:
         fail(
@@ -258,74 +249,93 @@ for record_id, record_chunks in chunks_by_record.items():
 
     for chunk in ordered_chunks:
         metadata = chunk["metadata"]
+        chunk_id = chunk["chunk_id"]
+
         word_count = len(chunk["content"].split())
+        token_count = count_tokens(
+            tokenizer,
+            chunk["retrieval_text"]
+        )
+
+        all_word_counts.append(word_count)
+        all_token_counts.append(token_count)
 
         if metadata.get("source_record_id") != record_id:
             fail(
-                f"{chunk['chunk_id']}: source_record_id "
-                "does not match record_id"
+                f"{chunk_id}: source_record_id does not "
+                "match record_id"
             )
 
         if metadata.get("chunk_count") != expected_count:
             fail(
-                f"{chunk['chunk_id']}: chunk_count should be "
+                f"{chunk_id}: chunk_count should be "
                 f"{expected_count}"
             )
 
         if metadata.get("chunk_word_count") != word_count:
             fail(
-                f"{chunk['chunk_id']}: stored word count "
-                f"{metadata.get('chunk_word_count')} does not "
-                f"match actual count {word_count}"
+                f"{chunk_id}: stored word count does not "
+                f"match actual word count {word_count}"
+            )
+
+        if metadata.get("chunk_token_count") != token_count:
+            fail(
+                f"{chunk_id}: stored token count "
+                f"{metadata.get('chunk_token_count')} does not "
+                f"match actual token count {token_count}"
             )
 
         if word_count <= 0:
-            fail(f"{chunk['chunk_id']}: word count is zero")
+            fail(f"{chunk_id}: word count is zero")
 
-        if word_count > MAX_WORDS:
+        if token_count > TARGET_MAX_TOKENS:
             fail(
-                f"{chunk['chunk_id']}: word count "
-                f"{word_count} exceeds {MAX_WORDS}"
+                f"{chunk_id}: {token_count} tokens exceeds "
+                f"the target of {TARGET_MAX_TOKENS}"
             )
 
-        if not metadata.get("citation_locator"):
+        if token_count > MODEL_TOKEN_LIMIT:
             fail(
-                f"{chunk['chunk_id']}: citation locator is missing"
+                f"{chunk_id}: {token_count} tokens exceeds "
+                f"the model limit of {MODEL_TOKEN_LIMIT}"
             )
+
+        locator = metadata.get("citation_locator")
+
+        if not locator:
+            fail(f"{chunk_id}: citation locator is missing")
 
         expected_citation = (
-            f"{chunk['document_name']} - "
-            f"{metadata['citation_locator']}"
+            f"{chunk['document_name']} - {locator}"
         )
 
         if chunk["citation"] != expected_citation:
             fail(
-                f"{chunk['chunk_id']}: citation does not match "
-                "the document name and locator"
+                f"{chunk_id}: citation is inconsistent"
             )
 
-        required_retrieval_values = [
+        retrieval_requirements = [
             f"Document: {chunk['document_title']}",
             f"File type: {chunk['file_type']}",
-            f"Location: {metadata['citation_locator']}"
+            f"Location: {locator}"
         ]
 
-        for value in required_retrieval_values:
-            if value not in chunk["retrieval_text"]:
+        for required_value in retrieval_requirements:
+            if required_value not in chunk["retrieval_text"]:
                 fail(
-                    f"{chunk['chunk_id']}: retrieval_text "
-                    f"is missing '{value}'"
+                    f"{chunk_id}: retrieval_text is missing "
+                    f"'{required_value}'"
                 )
 
         if chunk["content"] not in chunk["retrieval_text"]:
             fail(
-                f"{chunk['chunk_id']}: retrieval_text "
-                "does not contain the chunk content"
+                f"{chunk_id}: retrieval_text does not "
+                "contain the chunk content"
             )
 
 
 # -------------------------------------------------------------------
-# Atomic records must not be split
+# Atomic records must remain atomic
 # -------------------------------------------------------------------
 
 for chunk in chunks:
@@ -346,26 +356,42 @@ for chunk in chunks:
 
 
 # -------------------------------------------------------------------
-# Validate the 40-word overlap
+# Validate overlap for every split record
 # -------------------------------------------------------------------
 
-first_words = split_chunks[0]["content"].split()
-second_words = split_chunks[1]["content"].split()
-
-if len(first_words) < OVERLAP_WORDS:
-    fail("First split chunk is too short for the required overlap")
-
-if len(second_words) < OVERLAP_WORDS:
-    fail("Second split chunk is too short for the required overlap")
-
-previous_tail = first_words[-OVERLAP_WORDS:]
-next_head = second_words[:OVERLAP_WORDS]
-
-if previous_tail != next_head:
-    fail(
-        f"{split_record_id}: expected a "
-        f"{OVERLAP_WORDS}-word overlap"
+for record_id, record_chunks in split_records.items():
+    ordered_chunks = sorted(
+        record_chunks,
+        key=lambda item: item["metadata"]["chunk_index"]
     )
+
+    for previous, following in zip(
+        ordered_chunks,
+        ordered_chunks[1:]
+    ):
+        previous_words = previous["content"].split()
+        following_words = following["content"].split()
+
+        if len(previous_words) < OVERLAP_WORDS:
+            fail(
+                f"{previous['chunk_id']}: insufficient words "
+                "for the expected overlap"
+            )
+
+        if len(following_words) < OVERLAP_WORDS:
+            fail(
+                f"{following['chunk_id']}: insufficient words "
+                "for the expected overlap"
+            )
+
+        if (
+            previous_words[-OVERLAP_WORDS:]
+            != following_words[:OVERLAP_WORDS]
+        ):
+            fail(
+                f"{record_id}: adjacent chunks do not "
+                f"preserve the {OVERLAP_WORDS}-word overlap"
+            )
 
 
 # -------------------------------------------------------------------
@@ -410,7 +436,7 @@ if manifest["chunks_by_granularity"] != (
 
 
 # -------------------------------------------------------------------
-# Validate selected metadata examples
+# Selected metadata checks
 # -------------------------------------------------------------------
 
 march_marketing = [
@@ -426,7 +452,7 @@ march_marketing = [
 
 if len(march_marketing) != 1:
     fail(
-        "Expected one March Marketing department-summary chunk"
+        "Expected one March Marketing summary chunk"
     )
 
 marketing_metadata = march_marketing[0]["metadata"]
@@ -438,14 +464,15 @@ if marketing_metadata["variance_status"] != "Unfavourable":
     fail("March Marketing status should be Unfavourable")
 
 if "Month: 2026-03" not in march_marketing[0]["retrieval_text"]:
-    fail("March Marketing retrieval_text is missing the month")
+    fail("March Marketing retrieval text is missing the month")
 
 if (
     "Department: Marketing"
     not in march_marketing[0]["retrieval_text"]
 ):
     fail(
-        "March Marketing retrieval_text is missing the department"
+        "March Marketing retrieval text is missing "
+        "the department"
     )
 
 
@@ -464,7 +491,10 @@ if gross_margin_kpi[0]["metadata"]["kpi_name"] != "Gross margin":
 if "KPI: Gross margin" not in (
     gross_margin_kpi[0]["retrieval_text"]
 ):
-    fail("Gross margin retrieval_text is missing the KPI name")
+    fail(
+        "Gross margin retrieval text is missing "
+        "the KPI name"
+    )
 
 
 pdf_page_numbers = sorted(
@@ -483,49 +513,75 @@ if pdf_page_numbers != list(range(1, 10)):
 
 
 # -------------------------------------------------------------------
-# Manifest strategy and word statistics
+# Manifest strategy and statistics
 # -------------------------------------------------------------------
 
 strategy = manifest.get("chunking_strategy", {})
 
-if strategy.get("method") != "overlapping_word_windows":
-    fail("Unexpected chunking method in manifest")
+expected_strategy_values = {
+    "method": "token_aware_word_windows",
+    "tokenizer": MODEL_NAME,
+    "model_token_limit": MODEL_TOKEN_LIMIT,
+    "target_max_tokens": TARGET_MAX_TOKENS,
+    "maximum_words": 220,
+    "overlap_words": OVERLAP_WORDS
+}
 
-if strategy.get("maximum_words") != MAX_WORDS:
-    fail("Manifest maximum_words is incorrect")
-
-if strategy.get("overlap_words") != OVERLAP_WORDS:
-    fail("Manifest overlap_words is incorrect")
+for field, expected_value in expected_strategy_values.items():
+    if strategy.get(field) != expected_value:
+        fail(
+            f"Manifest strategy field '{field}' should be "
+            f"{expected_value}, found {strategy.get(field)}"
+        )
 
 if set(strategy.get("atomic_granularities", [])) != (
     ATOMIC_GRANULARITIES
 ):
     fail("Manifest atomic granularities are incorrect")
 
-word_counts = [
-    len(chunk["content"].split())
-    for chunk in chunks
-]
+word_statistics = manifest.get(
+    "chunk_word_statistics",
+    {}
+)
 
-statistics = manifest.get("chunk_word_statistics", {})
+token_statistics = manifest.get(
+    "chunk_token_statistics",
+    {}
+)
 
-if statistics.get("minimum") != min(word_counts):
-    fail("Manifest minimum word count is incorrect")
-
-if statistics.get("maximum") != max(word_counts):
-    fail("Manifest maximum word count is incorrect")
-
-expected_average = round(
-    sum(word_counts) / len(word_counts),
+expected_average_words = round(
+    sum(all_word_counts) / len(all_word_counts),
     2
 )
 
-if statistics.get("average") != expected_average:
-    fail(
-        "Manifest average word count is incorrect: "
-        f"expected {expected_average}, "
-        f"found {statistics.get('average')}"
-    )
+expected_average_tokens = round(
+    sum(all_token_counts) / len(all_token_counts),
+    2
+)
+
+if word_statistics.get("minimum") != min(all_word_counts):
+    fail("Manifest minimum word count is incorrect")
+
+if word_statistics.get("maximum") != max(all_word_counts):
+    fail("Manifest maximum word count is incorrect")
+
+if word_statistics.get("average") != expected_average_words:
+    fail("Manifest average word count is incorrect")
+
+if token_statistics.get("minimum") != min(all_token_counts):
+    fail("Manifest minimum token count is incorrect")
+
+if token_statistics.get("maximum") != max(all_token_counts):
+    fail("Manifest maximum token count is incorrect")
+
+if token_statistics.get("average") != expected_average_tokens:
+    fail("Manifest average token count is incorrect")
+
+if token_statistics.get("texts_over_target") != 0:
+    fail("Manifest should report zero texts above target")
+
+if token_statistics.get("texts_over_model_limit") != 0:
+    fail("Manifest should report zero texts above model limit")
 
 
 print("[PASS] Chunk files exist and are non-empty")
@@ -533,17 +589,20 @@ print(f"[PASS] Source records: {len(records)}")
 print(f"[PASS] Chunks: {len(chunks)}")
 print("[PASS] Chunk IDs are unique")
 print("[PASS] Every source record is represented")
-print(
-    f"[PASS] Split narrative record: {split_record_id}"
-)
-print("[PASS] Chunk numbering and word counts are correct")
+print(f"[PASS] Split narrative records: {len(split_records)}")
+print("[PASS] Chunk numbering and metadata are correct")
 print("[PASS] Atomic CSV and KPI records were not split")
 print(
     f"[PASS] Split chunks preserve a "
     f"{OVERLAP_WORDS}-word overlap"
 )
+print(
+    f"[PASS] Maximum retrieval length: "
+    f"{max(all_token_counts)} tokens"
+)
+print("[PASS] No retrieval text exceeds the token target")
 print("[PASS] File-type and granularity counts are correct")
 print("[PASS] Citations and retrieval headers are complete")
 print("[PASS] PDF, CSV and KPI metadata were preserved")
-print("[PASS] Manifest matches the generated chunks")
-print("[PASS] Corpus chunking is fully consistent")
+print("[PASS] Manifest matches the token-aware chunks")
+print("[PASS] Token-aware corpus chunking is fully consistent")
