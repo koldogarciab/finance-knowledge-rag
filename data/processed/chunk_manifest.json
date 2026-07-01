@@ -1,0 +1,36 @@
+{
+  "input_file": "data/processed/corpus_records.jsonl",
+  "output_file": "data/processed/corpus_chunks.jsonl",
+  "source_record_count": 305,
+  "chunk_count": 306,
+  "split_record_count": 1,
+  "chunking_strategy": {
+    "method": "overlapping_word_windows",
+    "maximum_words": 220,
+    "overlap_words": 40,
+    "atomic_granularities": [
+      "account_category_row",
+      "kpi",
+      "monthly_department_summary"
+    ]
+  },
+  "chunks_by_file_type": {
+    "csv": 252,
+    "docx": 13,
+    "json": 13,
+    "markdown": 18,
+    "pdf": 10
+  },
+  "chunks_by_granularity": {
+    "account_category_row": 189,
+    "kpi": 13,
+    "monthly_department_summary": 63,
+    "page": 10,
+    "section": 31
+  },
+  "chunk_word_statistics": {
+    "minimum": 2,
+    "maximum": 220,
+    "average": 57.84
+  }
+}
