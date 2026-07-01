@@ -1,0 +1,190 @@
+row_id,month,department,cost_centre,account_category,budget_aud,actual_aud,variance_aud,variance_pct,forecast_aud,forecast_variance_aud,variance_status,responsible_person_id,responsible_manager,period_status
+BVA_001,2025-07,Retail Operations,RET100,Store labour,1182500,1194325,11825,0.01,1191960,2365,Unfavourable,PER_005,James Carter,Closed
+BVA_002,2025-07,Retail Operations,RET100,Occupancy,645000,651450,6450,0.01,650160,1290,Unfavourable,PER_005,James Carter,Closed
+BVA_003,2025-07,Retail Operations,RET100,Repairs and maintenance,322500,325725,3225,0.01,325080,645,Unfavourable,PER_005,James Carter,Closed
+BVA_004,2025-08,Retail Operations,RET100,Store labour,1166000,1160170,-5830,-0.005,1161336,-1166,Favourable,PER_005,James Carter,Closed
+BVA_005,2025-08,Retail Operations,RET100,Occupancy,636000,632820,-3180,-0.005,633456,-636,Favourable,PER_005,James Carter,Closed
+BVA_006,2025-08,Retail Operations,RET100,Repairs and maintenance,318000,316410,-1590,-0.005,316728,-318,Favourable,PER_005,James Carter,Closed
+BVA_007,2025-09,Retail Operations,RET100,Store labour,1199000,1208592,9592,0.008,1206674,1918,Unfavourable,PER_005,James Carter,Closed
+BVA_008,2025-09,Retail Operations,RET100,Occupancy,654000,659232,5232,0.008,658186,1046,Unfavourable,PER_005,James Carter,Closed
+BVA_009,2025-09,Retail Operations,RET100,Repairs and maintenance,327000,329616,2616,0.008,329092,524,Unfavourable,PER_005,James Carter,Closed
+BVA_010,2025-10,Retail Operations,RET100,Store labour,1210000,1228150,18150,0.015,1224520,3630,Unfavourable,PER_005,James Carter,Closed
+BVA_011,2025-10,Retail Operations,RET100,Occupancy,660000,669900,9900,0.015,667920,1980,Unfavourable,PER_005,James Carter,Closed
+BVA_012,2025-10,Retail Operations,RET100,Repairs and maintenance,330000,334950,4950,0.015,333960,990,Unfavourable,PER_005,James Carter,Closed
+BVA_013,2025-11,Retail Operations,RET100,Store labour,1292500,1318350,25850,0.02,1313180,5170,Unfavourable,PER_005,James Carter,Closed
+BVA_014,2025-11,Retail Operations,RET100,Occupancy,705000,719100,14100,0.02,716280,2820,Unfavourable,PER_005,James Carter,Closed
+BVA_015,2025-11,Retail Operations,RET100,Repairs and maintenance,352500,359550,7050,0.02,358140,1410,Unfavourable,PER_005,James Carter,Closed
+BVA_016,2025-12,Retail Operations,RET100,Store labour,1485000,1529550,44550,0.03,1520640,8910,Unfavourable,PER_005,James Carter,Closed
+BVA_017,2025-12,Retail Operations,RET100,Occupancy,810000,834300,24300,0.03,829440,4860,Unfavourable,PER_005,James Carter,Closed
+BVA_018,2025-12,Retail Operations,RET100,Repairs and maintenance,405000,417150,12150,0.03,414720,2430,Unfavourable,PER_005,James Carter,Closed
+BVA_019,2026-01,Retail Operations,RET100,Store labour,1237500,1225125,-12375,-0.01,1227600,-2475,Favourable,PER_005,James Carter,Closed
+BVA_020,2026-01,Retail Operations,RET100,Occupancy,675000,668250,-6750,-0.01,669600,-1350,Favourable,PER_005,James Carter,Closed
+BVA_021,2026-01,Retail Operations,RET100,Repairs and maintenance,337500,334125,-3375,-0.01,334800,-675,Favourable,PER_005,James Carter,Closed
+BVA_022,2026-02,Retail Operations,RET100,Store labour,1210000,1222100,12100,0.01,1219680,2420,Unfavourable,PER_005,James Carter,Closed
+BVA_023,2026-02,Retail Operations,RET100,Occupancy,660000,666600,6600,0.01,665280,1320,Unfavourable,PER_005,James Carter,Closed
+BVA_024,2026-02,Retail Operations,RET100,Repairs and maintenance,330000,333300,3300,0.01,332640,660,Unfavourable,PER_005,James Carter,Closed
+BVA_025,2026-03,Retail Operations,RET100,Store labour,1254000,1289750,35750,0.0285,1276000,13750,Unfavourable,PER_005,James Carter,Closed
+BVA_026,2026-03,Retail Operations,RET100,Occupancy,684000,703500,19500,0.0285,696000,7500,Unfavourable,PER_005,James Carter,Closed
+BVA_027,2026-03,Retail Operations,RET100,Repairs and maintenance,342000,351750,9750,0.0285,348000,3750,Unfavourable,PER_005,James Carter,Closed
+BVA_028,2025-07,E-commerce,ECOM200,Platform fees,186000,184140,-1860,-0.01,184512,-372,Favourable,PER_006,Mia Thompson,Closed
+BVA_029,2025-07,E-commerce,ECOM200,Online fulfilment,279000,276210,-2790,-0.01,276768,-558,Favourable,PER_006,Mia Thompson,Closed
+BVA_030,2025-07,E-commerce,ECOM200,Digital operations,155000,153450,-1550,-0.01,153760,-310,Favourable,PER_006,Mia Thompson,Closed
+BVA_031,2025-08,E-commerce,ECOM200,Platform fees,192000,192960,960,0.005,192768,192,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_032,2025-08,E-commerce,ECOM200,Online fulfilment,288000,289440,1440,0.005,289152,288,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_033,2025-08,E-commerce,ECOM200,Digital operations,160000,160800,800,0.005,160640,160,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_034,2025-09,E-commerce,ECOM200,Platform fees,198000,200376,2376,0.012,199901,475,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_035,2025-09,E-commerce,ECOM200,Online fulfilment,297000,300564,3564,0.012,299851,713,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_036,2025-09,E-commerce,ECOM200,Digital operations,165000,166980,1980,0.012,166584,396,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_037,2025-10,E-commerce,ECOM200,Platform fees,204000,208080,4080,0.02,207264,816,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_038,2025-10,E-commerce,ECOM200,Online fulfilment,306000,312120,6120,0.02,310896,1224,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_039,2025-10,E-commerce,ECOM200,Digital operations,170000,173400,3400,0.02,172720,680,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_040,2025-11,E-commerce,ECOM200,Platform fees,234000,239850,5850,0.025,238680,1170,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_041,2025-11,E-commerce,ECOM200,Online fulfilment,351000,359775,8775,0.025,358020,1755,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_042,2025-11,E-commerce,ECOM200,Digital operations,195000,199875,4875,0.025,198900,975,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_043,2025-12,E-commerce,ECOM200,Platform fees,285000,294975,9975,0.035,292980,1995,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_044,2025-12,E-commerce,ECOM200,Online fulfilment,427500,442462,14962,0.035,439470,2992,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_045,2025-12,E-commerce,ECOM200,Digital operations,237500,245813,8313,0.035,244150,1663,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_046,2026-01,E-commerce,ECOM200,Platform fees,207000,205965,-1035,-0.005,206172,-207,Favourable,PER_006,Mia Thompson,Closed
+BVA_047,2026-01,E-commerce,ECOM200,Online fulfilment,310500,308948,-1552,-0.005,309258,-310,Favourable,PER_006,Mia Thompson,Closed
+BVA_048,2026-01,E-commerce,ECOM200,Digital operations,172500,171637,-863,-0.005,171810,-173,Favourable,PER_006,Mia Thompson,Closed
+BVA_049,2026-02,E-commerce,ECOM200,Platform fees,204000,206040,2040,0.01,205632,408,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_050,2026-02,E-commerce,ECOM200,Online fulfilment,306000,309060,3060,0.01,308448,612,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_051,2026-02,E-commerce,ECOM200,Digital operations,170000,171700,1700,0.01,171360,340,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_052,2026-03,E-commerce,ECOM200,Platform fees,213000,220500,7500,0.0352,219000,1500,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_053,2026-03,E-commerce,ECOM200,Online fulfilment,319500,330750,11250,0.0352,328500,2250,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_054,2026-03,E-commerce,ECOM200,Digital operations,177500,183750,6250,0.0352,182500,1250,Unfavourable,PER_006,Mia Thompson,Closed
+BVA_055,2025-07,Marketing,MKT300,Digital advertising,240000,235200,-4800,-0.02,236160,-960,Favourable,PER_007,Sarah Mitchell,Closed
+BVA_056,2025-07,Marketing,MKT300,Brand campaigns,144000,141120,-2880,-0.02,141696,-576,Favourable,PER_007,Sarah Mitchell,Closed
+BVA_057,2025-07,Marketing,MKT300,Agency and creative,96000,94080,-1920,-0.02,94464,-384,Favourable,PER_007,Sarah Mitchell,Closed
+BVA_058,2025-08,Marketing,MKT300,Digital advertising,250000,252500,2500,0.01,252000,500,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_059,2025-08,Marketing,MKT300,Brand campaigns,150000,151500,1500,0.01,151200,300,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_060,2025-08,Marketing,MKT300,Agency and creative,100000,101000,1000,0.01,100800,200,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_061,2025-09,Marketing,MKT300,Digital advertising,260000,263900,3900,0.015,263120,780,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_062,2025-09,Marketing,MKT300,Brand campaigns,156000,158340,2340,0.015,157872,468,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_063,2025-09,Marketing,MKT300,Agency and creative,104000,105560,1560,0.015,105248,312,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_064,2025-10,Marketing,MKT300,Digital advertising,275000,283250,8250,0.03,281600,1650,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_065,2025-10,Marketing,MKT300,Brand campaigns,165000,169950,4950,0.03,168960,990,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_066,2025-10,Marketing,MKT300,Agency and creative,110000,113300,3300,0.03,112640,660,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_067,2025-11,Marketing,MKT300,Digital advertising,325000,338000,13000,0.04,335400,2600,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_068,2025-11,Marketing,MKT300,Brand campaigns,195000,202800,7800,0.04,201240,1560,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_069,2025-11,Marketing,MKT300,Agency and creative,130000,135200,5200,0.04,134160,1040,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_070,2025-12,Marketing,MKT300,Digital advertising,350000,367500,17500,0.05,364000,3500,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_071,2025-12,Marketing,MKT300,Brand campaigns,210000,220500,10500,0.05,218400,2100,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_072,2025-12,Marketing,MKT300,Agency and creative,140000,147000,7000,0.05,145600,1400,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_073,2026-01,Marketing,MKT300,Digital advertising,250000,250000,0,0.0,250000,0,On budget,PER_007,Sarah Mitchell,Closed
+BVA_074,2026-01,Marketing,MKT300,Brand campaigns,150000,150000,0,0.0,150000,0,On budget,PER_007,Sarah Mitchell,Closed
+BVA_075,2026-01,Marketing,MKT300,Agency and creative,100000,100000,0,0.0,100000,0,On budget,PER_007,Sarah Mitchell,Closed
+BVA_076,2026-02,Marketing,MKT300,Digital advertising,270000,275400,5400,0.02,274320,1080,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_077,2026-02,Marketing,MKT300,Brand campaigns,162000,165240,3240,0.02,164592,648,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_078,2026-02,Marketing,MKT300,Agency and creative,108000,110160,2160,0.02,109728,432,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_079,2026-03,Marketing,MKT300,Digital advertising,310000,455000,145000,0.4677,380000,75000,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_080,2026-03,Marketing,MKT300,Brand campaigns,186000,210000,24000,0.129,228000,-18000,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_081,2026-03,Marketing,MKT300,Agency and creative,124000,140000,16000,0.129,152000,-12000,Unfavourable,PER_007,Sarah Mitchell,Closed
+BVA_082,2025-07,Supply Chain,SC400,Freight,525000,530250,5250,0.01,529200,1050,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_083,2025-07,Supply Chain,SC400,Warehousing,315000,318150,3150,0.01,317520,630,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_084,2025-07,Supply Chain,SC400,Distribution labour,210000,212100,2100,0.01,211680,420,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_085,2025-08,Supply Chain,SC400,Freight,530000,540600,10600,0.02,538480,2120,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_086,2025-08,Supply Chain,SC400,Warehousing,318000,324360,6360,0.02,323088,1272,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_087,2025-08,Supply Chain,SC400,Distribution labour,212000,216240,4240,0.02,215392,848,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_088,2025-09,Supply Chain,SC400,Freight,550000,563750,13750,0.025,561000,2750,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_089,2025-09,Supply Chain,SC400,Warehousing,330000,338250,8250,0.025,336600,1650,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_090,2025-09,Supply Chain,SC400,Distribution labour,220000,225500,5500,0.025,224400,1100,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_091,2025-10,Supply Chain,SC400,Freight,565000,581950,16950,0.03,578560,3390,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_092,2025-10,Supply Chain,SC400,Warehousing,339000,349170,10170,0.03,347136,2034,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_093,2025-10,Supply Chain,SC400,Distribution labour,226000,232780,6780,0.03,231424,1356,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_094,2025-11,Supply Chain,SC400,Freight,640000,665600,25600,0.04,660480,5120,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_095,2025-11,Supply Chain,SC400,Warehousing,384000,399360,15360,0.04,396288,3072,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_096,2025-11,Supply Chain,SC400,Distribution labour,256000,266240,10240,0.04,264192,2048,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_097,2025-12,Supply Chain,SC400,Freight,710000,752600,42600,0.06,744080,8520,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_098,2025-12,Supply Chain,SC400,Warehousing,426000,451560,25560,0.06,446448,5112,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_099,2025-12,Supply Chain,SC400,Distribution labour,284000,301040,17040,0.06,297632,3408,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_100,2026-01,Supply Chain,SC400,Freight,575000,583625,8625,0.015,581900,1725,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_101,2026-01,Supply Chain,SC400,Warehousing,345000,350175,5175,0.015,349140,1035,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_102,2026-01,Supply Chain,SC400,Distribution labour,230000,233450,3450,0.015,232760,690,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_103,2026-02,Supply Chain,SC400,Freight,590000,604750,14750,0.025,601800,2950,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_104,2026-02,Supply Chain,SC400,Warehousing,354000,362850,8850,0.025,361080,1770,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_105,2026-02,Supply Chain,SC400,Distribution labour,236000,241900,5900,0.025,240720,1180,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_106,2026-03,Supply Chain,SC400,Freight,620000,745000,125000,0.2016,675000,70000,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_107,2026-03,Supply Chain,SC400,Warehousing,372000,390000,18000,0.0484,405000,-15000,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_108,2026-03,Supply Chain,SC400,Distribution labour,248000,255000,7000,0.0282,270000,-15000,Unfavourable,PER_008,Liam O'Connor,Closed
+BVA_109,2025-07,Information Technology,IT500,Software and licences,152000,147440,-4560,-0.03,148352,-912,Favourable,PER_009,Ethan Brooks,Closed
+BVA_110,2025-07,Information Technology,IT500,Infrastructure,114000,110580,-3420,-0.03,111264,-684,Favourable,PER_009,Ethan Brooks,Closed
+BVA_111,2025-07,Information Technology,IT500,Technology projects,114000,110580,-3420,-0.03,111264,-684,Favourable,PER_009,Ethan Brooks,Closed
+BVA_112,2025-08,Information Technology,IT500,Software and licences,156000,152880,-3120,-0.02,153504,-624,Favourable,PER_009,Ethan Brooks,Closed
+BVA_113,2025-08,Information Technology,IT500,Infrastructure,117000,114660,-2340,-0.02,115128,-468,Favourable,PER_009,Ethan Brooks,Closed
+BVA_114,2025-08,Information Technology,IT500,Technology projects,117000,114660,-2340,-0.02,115128,-468,Favourable,PER_009,Ethan Brooks,Closed
+BVA_115,2025-09,Information Technology,IT500,Software and licences,160000,160000,0,0.0,160000,0,On budget,PER_009,Ethan Brooks,Closed
+BVA_116,2025-09,Information Technology,IT500,Infrastructure,120000,120000,0,0.0,120000,0,On budget,PER_009,Ethan Brooks,Closed
+BVA_117,2025-09,Information Technology,IT500,Technology projects,120000,120000,0,0.0,120000,0,On budget,PER_009,Ethan Brooks,Closed
+BVA_118,2025-10,Information Technology,IT500,Software and licences,164000,165640,1640,0.01,165312,328,Unfavourable,PER_009,Ethan Brooks,Closed
+BVA_119,2025-10,Information Technology,IT500,Infrastructure,123000,124230,1230,0.01,123984,246,Unfavourable,PER_009,Ethan Brooks,Closed
+BVA_120,2025-10,Information Technology,IT500,Technology projects,123000,124230,1230,0.01,123984,246,Unfavourable,PER_009,Ethan Brooks,Closed
+BVA_121,2025-11,Information Technology,IT500,Software and licences,168000,171360,3360,0.02,170688,672,Unfavourable,PER_009,Ethan Brooks,Closed
+BVA_122,2025-11,Information Technology,IT500,Infrastructure,126000,128520,2520,0.02,128016,504,Unfavourable,PER_009,Ethan Brooks,Closed
+BVA_123,2025-11,Information Technology,IT500,Technology projects,126000,128520,2520,0.02,128016,504,Unfavourable,PER_009,Ethan Brooks,Closed
+BVA_124,2025-12,Information Technology,IT500,Software and licences,172000,170280,-1720,-0.01,170624,-344,Favourable,PER_009,Ethan Brooks,Closed
+BVA_125,2025-12,Information Technology,IT500,Infrastructure,129000,127710,-1290,-0.01,127968,-258,Favourable,PER_009,Ethan Brooks,Closed
+BVA_126,2025-12,Information Technology,IT500,Technology projects,129000,127710,-1290,-0.01,127968,-258,Favourable,PER_009,Ethan Brooks,Closed
+BVA_127,2026-01,Information Technology,IT500,Software and licences,160000,156800,-3200,-0.02,157440,-640,Favourable,PER_009,Ethan Brooks,Closed
+BVA_128,2026-01,Information Technology,IT500,Infrastructure,120000,117600,-2400,-0.02,118080,-480,Favourable,PER_009,Ethan Brooks,Closed
+BVA_129,2026-01,Information Technology,IT500,Technology projects,120000,117600,-2400,-0.02,118080,-480,Favourable,PER_009,Ethan Brooks,Closed
+BVA_130,2026-02,Information Technology,IT500,Software and licences,164000,159080,-4920,-0.03,160064,-984,Favourable,PER_009,Ethan Brooks,Closed
+BVA_131,2026-02,Information Technology,IT500,Infrastructure,123000,119310,-3690,-0.03,120048,-738,Favourable,PER_009,Ethan Brooks,Closed
+BVA_132,2026-02,Information Technology,IT500,Technology projects,123000,119310,-3690,-0.03,120048,-738,Favourable,PER_009,Ethan Brooks,Closed
+BVA_133,2026-03,Information Technology,IT500,Software and licences,164000,160000,-4000,-0.0244,152000,8000,Favourable,PER_009,Ethan Brooks,Closed
+BVA_134,2026-03,Information Technology,IT500,Infrastructure,123000,121000,-2000,-0.0163,114000,7000,Favourable,PER_009,Ethan Brooks,Closed
+BVA_135,2026-03,Information Technology,IT500,Technology projects,123000,84000,-39000,-0.3171,114000,-30000,Favourable,PER_009,Ethan Brooks,Closed
+BVA_136,2025-07,Finance,FIN600,Finance salaries,258000,255420,-2580,-0.01,255936,-516,Favourable,PER_004,Priya Nair,Closed
+BVA_137,2025-07,Finance,FIN600,Audit and tax,86000,85140,-860,-0.01,85312,-172,Favourable,PER_004,Priya Nair,Closed
+BVA_138,2025-07,Finance,FIN600,Shared finance services,86000,85140,-860,-0.01,85312,-172,Favourable,PER_004,Priya Nair,Closed
+BVA_139,2025-08,Finance,FIN600,Finance salaries,264000,262680,-1320,-0.005,262944,-264,Favourable,PER_004,Priya Nair,Closed
+BVA_140,2025-08,Finance,FIN600,Audit and tax,88000,87560,-440,-0.005,87648,-88,Favourable,PER_004,Priya Nair,Closed
+BVA_141,2025-08,Finance,FIN600,Shared finance services,88000,87560,-440,-0.005,87648,-88,Favourable,PER_004,Priya Nair,Closed
+BVA_142,2025-09,Finance,FIN600,Finance salaries,270000,270000,0,0.0,270000,0,On budget,PER_004,Priya Nair,Closed
+BVA_143,2025-09,Finance,FIN600,Audit and tax,90000,90000,0,0.0,90000,0,On budget,PER_004,Priya Nair,Closed
+BVA_144,2025-09,Finance,FIN600,Shared finance services,90000,90000,0,0.0,90000,0,On budget,PER_004,Priya Nair,Closed
+BVA_145,2025-10,Finance,FIN600,Finance salaries,276000,277380,1380,0.005,277104,276,Unfavourable,PER_004,Priya Nair,Closed
+BVA_146,2025-10,Finance,FIN600,Audit and tax,92000,92460,460,0.005,92368,92,Unfavourable,PER_004,Priya Nair,Closed
+BVA_147,2025-10,Finance,FIN600,Shared finance services,92000,92460,460,0.005,92368,92,Unfavourable,PER_004,Priya Nair,Closed
+BVA_148,2025-11,Finance,FIN600,Finance salaries,282000,284820,2820,0.01,284256,564,Unfavourable,PER_004,Priya Nair,Closed
+BVA_149,2025-11,Finance,FIN600,Audit and tax,94000,94940,940,0.01,94752,188,Unfavourable,PER_004,Priya Nair,Closed
+BVA_150,2025-11,Finance,FIN600,Shared finance services,94000,94940,940,0.01,94752,188,Unfavourable,PER_004,Priya Nair,Closed
+BVA_151,2025-12,Finance,FIN600,Finance salaries,288000,292320,4320,0.015,291456,864,Unfavourable,PER_004,Priya Nair,Closed
+BVA_152,2025-12,Finance,FIN600,Audit and tax,96000,97440,1440,0.015,97152,288,Unfavourable,PER_004,Priya Nair,Closed
+BVA_153,2025-12,Finance,FIN600,Shared finance services,96000,97440,1440,0.015,97152,288,Unfavourable,PER_004,Priya Nair,Closed
+BVA_154,2026-01,Finance,FIN600,Finance salaries,270000,267300,-2700,-0.01,267840,-540,Favourable,PER_004,Priya Nair,Closed
+BVA_155,2026-01,Finance,FIN600,Audit and tax,90000,89100,-900,-0.01,89280,-180,Favourable,PER_004,Priya Nair,Closed
+BVA_156,2026-01,Finance,FIN600,Shared finance services,90000,89100,-900,-0.01,89280,-180,Favourable,PER_004,Priya Nair,Closed
+BVA_157,2026-02,Finance,FIN600,Finance salaries,270000,264600,-5400,-0.02,265680,-1080,Favourable,PER_004,Priya Nair,Closed
+BVA_158,2026-02,Finance,FIN600,Audit and tax,90000,88200,-1800,-0.02,88560,-360,Favourable,PER_004,Priya Nair,Closed
+BVA_159,2026-02,Finance,FIN600,Shared finance services,90000,88200,-1800,-0.02,88560,-360,Favourable,PER_004,Priya Nair,Closed
+BVA_160,2026-03,Finance,FIN600,Finance salaries,276000,268800,-7200,-0.0261,271200,-2400,Favourable,PER_004,Priya Nair,Closed
+BVA_161,2026-03,Finance,FIN600,Audit and tax,92000,89600,-2400,-0.0261,90400,-800,Favourable,PER_004,Priya Nair,Closed
+BVA_162,2026-03,Finance,FIN600,Shared finance services,92000,89600,-2400,-0.0261,90400,-800,Favourable,PER_004,Priya Nair,Closed
+BVA_163,2025-07,People & Culture,PC700,People team salaries,312000,312000,0,0.0,312000,0,On budget,PER_010,Grace Lee,Closed
+BVA_164,2025-07,People & Culture,PC700,Recruitment,96000,96000,0,0.0,96000,0,On budget,PER_010,Grace Lee,Closed
+BVA_165,2025-07,People & Culture,PC700,Training and wellbeing,72000,72000,0,0.0,72000,0,On budget,PER_010,Grace Lee,Closed
+BVA_166,2025-08,People & Culture,PC700,People team salaries,318500,321685,3185,0.01,321048,637,Unfavourable,PER_010,Grace Lee,Closed
+BVA_167,2025-08,People & Culture,PC700,Recruitment,98000,98980,980,0.01,98784,196,Unfavourable,PER_010,Grace Lee,Closed
+BVA_168,2025-08,People & Culture,PC700,Training and wellbeing,73500,74235,735,0.01,74088,147,Unfavourable,PER_010,Grace Lee,Closed
+BVA_169,2025-09,People & Culture,PC700,People team salaries,325000,329875,4875,0.015,328900,975,Unfavourable,PER_010,Grace Lee,Closed
+BVA_170,2025-09,People & Culture,PC700,Recruitment,100000,101500,1500,0.015,101200,300,Unfavourable,PER_010,Grace Lee,Closed
+BVA_171,2025-09,People & Culture,PC700,Training and wellbeing,75000,76125,1125,0.015,75900,225,Unfavourable,PER_010,Grace Lee,Closed
+BVA_172,2025-10,People & Culture,PC700,People team salaries,331500,338130,6630,0.02,336804,1326,Unfavourable,PER_010,Grace Lee,Closed
+BVA_173,2025-10,People & Culture,PC700,Recruitment,102000,104040,2040,0.02,103632,408,Unfavourable,PER_010,Grace Lee,Closed
+BVA_174,2025-10,People & Culture,PC700,Training and wellbeing,76500,78030,1530,0.02,77724,306,Unfavourable,PER_010,Grace Lee,Closed
+BVA_175,2025-11,People & Culture,PC700,People team salaries,338000,346450,8450,0.025,344760,1690,Unfavourable,PER_010,Grace Lee,Closed
+BVA_176,2025-11,People & Culture,PC700,Recruitment,104000,106600,2600,0.025,106080,520,Unfavourable,PER_010,Grace Lee,Closed
+BVA_177,2025-11,People & Culture,PC700,Training and wellbeing,78000,79950,1950,0.025,79560,390,Unfavourable,PER_010,Grace Lee,Closed
+BVA_178,2025-12,People & Culture,PC700,People team salaries,351000,361530,10530,0.03,359424,2106,Unfavourable,PER_010,Grace Lee,Closed
+BVA_179,2025-12,People & Culture,PC700,Recruitment,108000,111240,3240,0.03,110592,648,Unfavourable,PER_010,Grace Lee,Closed
+BVA_180,2025-12,People & Culture,PC700,Training and wellbeing,81000,83430,2430,0.03,82944,486,Unfavourable,PER_010,Grace Lee,Closed
+BVA_181,2026-01,People & Culture,PC700,People team salaries,331500,336472,4972,0.015,335478,994,Unfavourable,PER_010,Grace Lee,Closed
+BVA_182,2026-01,People & Culture,PC700,Recruitment,102000,103530,1530,0.015,103224,306,Unfavourable,PER_010,Grace Lee,Closed
+BVA_183,2026-01,People & Culture,PC700,Training and wellbeing,76500,77648,1148,0.015,77418,230,Unfavourable,PER_010,Grace Lee,Closed
+BVA_184,2026-02,People & Culture,PC700,People team salaries,331500,338130,6630,0.02,336804,1326,Unfavourable,PER_010,Grace Lee,Closed
+BVA_185,2026-02,People & Culture,PC700,Recruitment,102000,104040,2040,0.02,103632,408,Unfavourable,PER_010,Grace Lee,Closed
+BVA_186,2026-02,People & Culture,PC700,Training and wellbeing,76500,78030,1530,0.02,77724,306,Unfavourable,PER_010,Grace Lee,Closed
+BVA_187,2026-03,People & Culture,PC700,People team salaries,338000,354250,16250,0.0481,351000,3250,Unfavourable,PER_010,Grace Lee,Closed
+BVA_188,2026-03,People & Culture,PC700,Recruitment,104000,109000,5000,0.0481,108000,1000,Unfavourable,PER_010,Grace Lee,Closed
+BVA_189,2026-03,People & Culture,PC700,Training and wellbeing,78000,81750,3750,0.0481,81000,750,Unfavourable,PER_010,Grace Lee,Closed
