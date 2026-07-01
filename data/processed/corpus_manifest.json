@@ -1,0 +1,46 @@
+{
+  "output_file": "data/processed/corpus_records.jsonl",
+  "record_count": 305,
+  "document_count": 5,
+  "records_by_file_type": {
+    "csv": 252,
+    "docx": 13,
+    "json": 13,
+    "markdown": 18,
+    "pdf": 9
+  },
+  "records_by_granularity": {
+    "account_category_row": 189,
+    "kpi": 13,
+    "monthly_department_summary": 63,
+    "page": 9,
+    "section": 31
+  },
+  "source_documents": [
+    {
+      "document_id": "DOC_PDF_001",
+      "file_type": "pdf",
+      "path": "data/raw/pdf/harbour_retail_q3_management_report_fy2026.pdf"
+    },
+    {
+      "document_id": "DOC_DOCX_001",
+      "file_type": "docx",
+      "path": "data/raw/docx/finance_policies_and_procedures.docx"
+    },
+    {
+      "document_id": "DOC_CSV_001",
+      "file_type": "csv",
+      "path": "data/raw/csv/monthly_budget_vs_actual_fy2026.csv"
+    },
+    {
+      "document_id": "DOC_JSON_001",
+      "file_type": "json",
+      "path": "data/raw/json/finance_kpi_dictionary.json"
+    },
+    {
+      "document_id": "DOC_MD_001",
+      "file_type": "markdown",
+      "path": "data/raw/markdown/fp_and_a_forecast_meeting_2026-04-10.md"
+    }
+  ]
+}
