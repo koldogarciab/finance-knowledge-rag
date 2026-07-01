@@ -1,0 +1,132 @@
+﻿[
+  {
+    "case_id": "pdf_ytd_revenue",
+    "file_type": "pdf",
+    "query": "What revenue did Harbour Retail Group report for the nine months ended 31 March 2026 and how far was it below budget?",
+    "reference_answer": "Revenue was AUD 91.8 million, AUD 1.2 million below budget.",
+    "expected_chunk_ids": [
+      "DOC_PDF_001:page:02:chunk:01",
+      "DOC_PDF_001:page:03:chunk:01",
+      "DOC_PDF_001:page:01:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_PDF_001"
+    }
+  },
+  {
+    "case_id": "pdf_full_year_revenue_forecast",
+    "file_type": "pdf",
+    "query": "What is the full-year revenue forecast and the gap to the full-year budget?",
+    "reference_answer": "Forecast revenue is AUD 121.8 million against a budget of AUD 124.0 million, a gap of AUD 2.2 million or 1.8%.",
+    "expected_chunk_ids": [
+      "DOC_PDF_001:page:06:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_PDF_001"
+    }
+  },
+  {
+    "case_id": "docx_month_end_close_deadline",
+    "file_type": "docx",
+    "query": "By what time and on which business day must the general ledger be closed?",
+    "reference_answer": "The general ledger must be closed by 17:00 on business day 5.",
+    "expected_chunk_ids": [
+      "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_DOCX_001",
+      "granularity": "section"
+    }
+  },
+  {
+    "case_id": "docx_operating_expenditure_approval",
+    "file_type": "docx",
+    "query": "Who must approve operating expenditure between AUD 25,001 and AUD 100,000?",
+    "reference_answer": "The Department Director and Finance Director must approve it.",
+    "expected_chunk_ids": [
+      "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_DOCX_001",
+      "granularity": "section"
+    }
+  },
+  {
+    "case_id": "json_gross_margin_definition",
+    "file_type": "json",
+    "query": "How is gross margin calculated and what is its target for the nine months ended 31 March 2026?",
+    "reference_answer": "Gross margin is calculated as revenue minus cost of goods sold, divided by revenue. The target is at least 43.1%.",
+    "expected_chunk_ids": [
+      "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_JSON_001",
+      "granularity": "kpi"
+    }
+  },
+  {
+    "case_id": "json_forecast_accuracy",
+    "file_type": "json",
+    "query": "What is the formula for forecast accuracy and what target must it meet?",
+    "reference_answer": "Forecast accuracy equals 1 minus the absolute value of actual minus forecast divided by actual. Its target is at least 95%.",
+    "expected_chunk_ids": [
+      "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_JSON_001",
+      "granularity": "kpi"
+    }
+  },
+  {
+    "case_id": "markdown_marketing_overspend",
+    "file_type": "markdown",
+    "query": "How far above budget was March Marketing expenditure and what caused the overspend?",
+    "reference_answer": "Marketing expenditure was AUD 185,000 above budget because of an unplanned digital customer acquisition campaign.",
+    "expected_chunk_ids": [
+      "DOC_MD_001:section:06:marketing-expenditure:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_MD_001",
+      "granularity": "section"
+    }
+  },
+  {
+    "case_id": "markdown_supply_chain_overspend",
+    "file_type": "markdown",
+    "query": "How far above budget was March Supply Chain expenditure and what caused the variance?",
+    "reference_answer": "Supply Chain expenditure was AUD 150,000 above budget because of freight surcharges and expedited shipments.",
+    "expected_chunk_ids": [
+      "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_MD_001",
+      "granularity": "section"
+    }
+  },
+  {
+    "case_id": "csv_retail_operations_july",
+    "file_type": "csv",
+    "query": "What were the July 2025 budget, actual expenditure and total variance for Retail Operations?",
+    "reference_answer": "Budget was AUD 2,150,000, actual expenditure was AUD 2,171,500 and the variance was AUD 21,500 or 1.00% unfavourable.",
+    "expected_chunk_ids": [
+      "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_CSV_001",
+      "granularity": "monthly_department_summary"
+    }
+  },
+  {
+    "case_id": "csv_ecommerce_august",
+    "file_type": "csv",
+    "query": "What were the August 2025 budget, actual expenditure and total variance for E-commerce?",
+    "reference_answer": "Budget was AUD 640,000, actual expenditure was AUD 643,200 and the variance was AUD 3,200 or 0.50% unfavourable.",
+    "expected_chunk_ids": [
+      "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_CSV_001",
+      "granularity": "monthly_department_summary"
+    }
+  }
+]

@@ -1,0 +1,1066 @@
+{
+  "status": "completed",
+  "retriever": {
+    "type": "dense_exact_cosine",
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "corpus_size": 316,
+    "embedding_dimensions": 384
+  },
+  "case_count": 10,
+  "global_summary": {
+    "case_count": 10,
+    "mrr": 0.5942,
+    "mean_rank": 28.9,
+    "hit_at_1": 5,
+    "hit_rate_at_1": 0.5,
+    "hit_at_3": 6,
+    "hit_rate_at_3": 0.6,
+    "hit_at_5": 7,
+    "hit_rate_at_5": 0.7
+  },
+  "filtered_summary": {
+    "case_count": 10,
+    "mrr": 0.8,
+    "mean_rank": 1.7,
+    "hit_at_1": 7,
+    "hit_rate_at_1": 0.7,
+    "hit_at_3": 8,
+    "hit_rate_at_3": 0.8,
+    "hit_at_5": 10,
+    "hit_rate_at_5": 1.0
+  },
+  "summary_by_file_type": {
+    "csv": {
+      "global": {
+        "case_count": 2,
+        "mrr": 0.1806,
+        "mean_rank": 6.5,
+        "hit_at_1": 0,
+        "hit_rate_at_1": 0.0,
+        "hit_at_3": 0,
+        "hit_rate_at_3": 0.0,
+        "hit_at_5": 1,
+        "hit_rate_at_5": 0.5
+      },
+      "filtered": {
+        "case_count": 2,
+        "mrr": 0.25,
+        "mean_rank": 4.0,
+        "hit_at_1": 0,
+        "hit_rate_at_1": 0.0,
+        "hit_at_3": 0,
+        "hit_rate_at_3": 0.0,
+        "hit_at_5": 2,
+        "hit_rate_at_5": 1.0
+      }
+    },
+    "docx": {
+      "global": {
+        "case_count": 2,
+        "mrr": 0.75,
+        "mean_rank": 1.5,
+        "hit_at_1": 1,
+        "hit_rate_at_1": 0.5,
+        "hit_at_3": 2,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 2,
+        "hit_rate_at_5": 1.0
+      },
+      "filtered": {
+        "case_count": 2,
+        "mrr": 0.75,
+        "mean_rank": 1.5,
+        "hit_at_1": 1,
+        "hit_rate_at_1": 0.5,
+        "hit_at_3": 2,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 2,
+        "hit_rate_at_5": 1.0
+      }
+    },
+    "json": {
+      "global": {
+        "case_count": 2,
+        "mrr": 1.0,
+        "mean_rank": 1.0,
+        "hit_at_1": 2,
+        "hit_rate_at_1": 1.0,
+        "hit_at_3": 2,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 2,
+        "hit_rate_at_5": 1.0
+      },
+      "filtered": {
+        "case_count": 2,
+        "mrr": 1.0,
+        "mean_rank": 1.0,
+        "hit_at_1": 2,
+        "hit_rate_at_1": 1.0,
+        "hit_at_3": 2,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 2,
+        "hit_rate_at_5": 1.0
+      }
+    },
+    "markdown": {
+      "global": {
+        "case_count": 2,
+        "mrr": 0.5385,
+        "mean_rank": 7.0,
+        "hit_at_1": 1,
+        "hit_rate_at_1": 0.5,
+        "hit_at_3": 1,
+        "hit_rate_at_3": 0.5,
+        "hit_at_5": 1,
+        "hit_rate_at_5": 0.5
+      },
+      "filtered": {
+        "case_count": 2,
+        "mrr": 1.0,
+        "mean_rank": 1.0,
+        "hit_at_1": 2,
+        "hit_rate_at_1": 1.0,
+        "hit_at_3": 2,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 2,
+        "hit_rate_at_5": 1.0
+      }
+    },
+    "pdf": {
+      "global": {
+        "case_count": 2,
+        "mrr": 0.502,
+        "mean_rank": 128.5,
+        "hit_at_1": 1,
+        "hit_rate_at_1": 0.5,
+        "hit_at_3": 1,
+        "hit_rate_at_3": 0.5,
+        "hit_at_5": 1,
+        "hit_rate_at_5": 0.5
+      },
+      "filtered": {
+        "case_count": 2,
+        "mrr": 1.0,
+        "mean_rank": 1.0,
+        "hit_at_1": 2,
+        "hit_rate_at_1": 1.0,
+        "hit_at_3": 2,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 2,
+        "hit_rate_at_5": 1.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "case_id": "pdf_ytd_revenue",
+      "file_type": "pdf",
+      "query": "What revenue did Harbour Retail Group report for the nine months ended 31 March 2026 and how far was it below budget?",
+      "reference_answer": "Revenue was AUD 91.8 million, AUD 1.2 million below budget.",
+      "expected_chunk_ids": [
+        "DOC_PDF_001:page:01:chunk:01",
+        "DOC_PDF_001:page:02:chunk:01",
+        "DOC_PDF_001:page:03:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_PDF_001"
+      },
+      "global_rank": 1,
+      "filtered_rank": 1,
+      "global_hit_at_5": true,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.6067,
+          "chunk_id": "DOC_PDF_001:page:02:chunk:01",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 2: 1. Executive summary"
+        },
+        {
+          "rank": 2,
+          "score": 0.5468,
+          "chunk_id": "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 6: Marketing expenditure"
+        },
+        {
+          "rank": 3,
+          "score": 0.5452,
+          "chunk_id": "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-01, Retail Operations, department summary"
+        },
+        {
+          "rank": 4,
+          "score": 0.5441,
+          "chunk_id": "DOC_CSV_001:summary:2025-11:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-11, Retail Operations, department summary"
+        },
+        {
+          "rank": 5,
+          "score": 0.5401,
+          "chunk_id": "DOC_CSV_001:summary:2025-12:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-12, Retail Operations, department summary"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.6067,
+          "chunk_id": "DOC_PDF_001:page:02:chunk:01",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 2: 1. Executive summary"
+        },
+        {
+          "rank": 2,
+          "score": 0.5049,
+          "chunk_id": "DOC_PDF_001:page:03:chunk:01",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 3: 2. Financial performance"
+        },
+        {
+          "rank": 3,
+          "score": 0.5026,
+          "chunk_id": "DOC_PDF_001:page:05:chunk:01",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 5: 4. March departmental cost performance"
+        },
+        {
+          "rank": 4,
+          "score": 0.501,
+          "chunk_id": "DOC_PDF_001:page:06:chunk:01",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 6: 5. Full-year forecast"
+        },
+        {
+          "rank": 5,
+          "score": 0.4636,
+          "chunk_id": "DOC_PDF_001:page:05:chunk:02",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 5: 4. March departmental cost performance"
+        }
+      ]
+    },
+    {
+      "case_id": "pdf_full_year_revenue_forecast",
+      "file_type": "pdf",
+      "query": "What is the full-year revenue forecast and the gap to the full-year budget?",
+      "reference_answer": "Forecast revenue is AUD 121.8 million against a budget of AUD 124.0 million, a gap of AUD 2.2 million or 1.8%.",
+      "expected_chunk_ids": [
+        "DOC_PDF_001:page:06:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_PDF_001"
+      },
+      "global_rank": 256,
+      "filtered_rank": 1,
+      "global_hit_at_5": false,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.5257,
+          "chunk_id": "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-09, Finance, department summary"
+        },
+        {
+          "rank": 2,
+          "score": 0.5146,
+          "chunk_id": "DOC_CSV_001:summary:2026-02:finance:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-02, Finance, department summary"
+        },
+        {
+          "rank": 3,
+          "score": 0.5133,
+          "chunk_id": "DOC_CSV_001:row:BVA_160:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-03, Finance, Finance salaries"
+        },
+        {
+          "rank": 4,
+          "score": 0.5124,
+          "chunk_id": "DOC_CSV_001:summary:2025-08:finance:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-08, Finance, department summary"
+        },
+        {
+          "rank": 5,
+          "score": 0.5105,
+          "chunk_id": "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-01, Marketing, department summary"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.4359,
+          "chunk_id": "DOC_PDF_001:page:06:chunk:01",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 6: 5. Full-year forecast"
+        },
+        {
+          "rank": 2,
+          "score": 0.4305,
+          "chunk_id": "DOC_PDF_001:page:06:chunk:02",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 6: 5. Full-year forecast"
+        },
+        {
+          "rank": 3,
+          "score": 0.4187,
+          "chunk_id": "DOC_PDF_001:page:02:chunk:02",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 2: 1. Executive summary"
+        },
+        {
+          "rank": 4,
+          "score": 0.4086,
+          "chunk_id": "DOC_PDF_001:page:09:chunk:02",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 9: 8. Appendix"
+        },
+        {
+          "rank": 5,
+          "score": 0.365,
+          "chunk_id": "DOC_PDF_001:page:03:chunk:02",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 3: 2. Financial performance"
+        }
+      ]
+    },
+    {
+      "case_id": "docx_month_end_close_deadline",
+      "file_type": "docx",
+      "query": "By what time and on which business day must the general ledger be closed?",
+      "reference_answer": "The general ledger must be closed by 17:00 on business day 5.",
+      "expected_chunk_ids": [
+        "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_DOCX_001",
+        "granularity": "section"
+      },
+      "global_rank": 1,
+      "filtered_rank": 1,
+      "global_hit_at_5": true,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.5653,
+          "chunk_id": "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 3: 2. Month-end close timetable"
+        },
+        {
+          "rank": 2,
+          "score": 0.3934,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_006: Inventory days"
+        },
+        {
+          "rank": 3,
+          "score": 0.3595,
+          "chunk_id": "DOC_MD_001:section:18:closing-outlook:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 18: Closing outlook"
+        },
+        {
+          "rank": 4,
+          "score": 0.3469,
+          "chunk_id": "DOC_MD_001:section:14:dec-003:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 14: DEC_003"
+        },
+        {
+          "rank": 5,
+          "score": 0.345,
+          "chunk_id": "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 10: 9. Balance sheet reconciliation timetable"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.5653,
+          "chunk_id": "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 3: 2. Month-end close timetable"
+        },
+        {
+          "rank": 2,
+          "score": 0.345,
+          "chunk_id": "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 10: 9. Balance sheet reconciliation timetable"
+        },
+        {
+          "rank": 3,
+          "score": 0.2643,
+          "chunk_id": "DOC_DOCX_001:section:02:1-document-overview:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 2: 1. Document overview"
+        },
+        {
+          "rank": 4,
+          "score": 0.2523,
+          "chunk_id": "DOC_DOCX_001:section:11:10-finance-document-retention:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 11: 10. Finance document retention"
+        },
+        {
+          "rank": 5,
+          "score": 0.2484,
+          "chunk_id": "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 5: 4. Prepayment recognition"
+        }
+      ]
+    },
+    {
+      "case_id": "docx_operating_expenditure_approval",
+      "file_type": "docx",
+      "query": "Who must approve operating expenditure between AUD 25,001 and AUD 100,000?",
+      "reference_answer": "The Department Director and Finance Director must approve it.",
+      "expected_chunk_ids": [
+        "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_DOCX_001",
+        "granularity": "section"
+      },
+      "global_rank": 2,
+      "filtered_rank": 2,
+      "global_hit_at_5": true,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.6146,
+          "chunk_id": "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 8: 7. Capital expenditure approval"
+        },
+        {
+          "rank": 2,
+          "score": 0.6061,
+          "chunk_id": "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 6: 5. Operating expenditure approval"
+        },
+        {
+          "rank": 3,
+          "score": 0.5949,
+          "chunk_id": "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 4: 3. Accrual recognition and review"
+        },
+        {
+          "rank": 4,
+          "score": 0.5863,
+          "chunk_id": "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 7: 6. Purchase order requirements"
+        },
+        {
+          "rank": 5,
+          "score": 0.5583,
+          "chunk_id": "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 13: 12. Appendix - key thresholds"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.6146,
+          "chunk_id": "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 8: 7. Capital expenditure approval"
+        },
+        {
+          "rank": 2,
+          "score": 0.6061,
+          "chunk_id": "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 6: 5. Operating expenditure approval"
+        },
+        {
+          "rank": 3,
+          "score": 0.5949,
+          "chunk_id": "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 4: 3. Accrual recognition and review"
+        },
+        {
+          "rank": 4,
+          "score": 0.5863,
+          "chunk_id": "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 7: 6. Purchase order requirements"
+        },
+        {
+          "rank": 5,
+          "score": 0.5583,
+          "chunk_id": "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 13: 12. Appendix - key thresholds"
+        }
+      ]
+    },
+    {
+      "case_id": "json_gross_margin_definition",
+      "file_type": "json",
+      "query": "How is gross margin calculated and what is its target for the nine months ended 31 March 2026?",
+      "reference_answer": "Gross margin is calculated as revenue minus cost of goods sold, divided by revenue. The target is at least 43.1%.",
+      "expected_chunk_ids": [
+        "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_JSON_001",
+        "granularity": "kpi"
+      },
+      "global_rank": 1,
+      "filtered_rank": 1,
+      "global_hit_at_5": true,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.5579,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_003: Gross margin"
+        },
+        {
+          "rank": 2,
+          "score": 0.4731,
+          "chunk_id": "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 6: Marketing expenditure"
+        },
+        {
+          "rank": 3,
+          "score": 0.4633,
+          "chunk_id": "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 8: Information Technology expenditure"
+        },
+        {
+          "rank": 4,
+          "score": 0.4292,
+          "chunk_id": "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 9: E-commerce performance"
+        },
+        {
+          "rank": 5,
+          "score": 0.4238,
+          "chunk_id": "DOC_CSV_001:row:BVA_055:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-07, Marketing, Digital advertising"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.5579,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_003: Gross margin"
+        },
+        {
+          "rank": 2,
+          "score": 0.3809,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_004:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_004: Adjusted EBITDA"
+        },
+        {
+          "rank": 3,
+          "score": 0.3681,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_001:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_001: Revenue"
+        },
+        {
+          "rank": 4,
+          "score": 0.3323,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_011: Forecast accuracy"
+        },
+        {
+          "rank": 5,
+          "score": 0.3277,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_006: Inventory days"
+        }
+      ]
+    },
+    {
+      "case_id": "json_forecast_accuracy",
+      "file_type": "json",
+      "query": "What is the formula for forecast accuracy and what target must it meet?",
+      "reference_answer": "Forecast accuracy equals 1 minus the absolute value of actual minus forecast divided by actual. Its target is at least 95%.",
+      "expected_chunk_ids": [
+        "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_JSON_001",
+        "granularity": "kpi"
+      },
+      "global_rank": 1,
+      "filtered_rank": 1,
+      "global_hit_at_5": true,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.5923,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_011: Forecast accuracy"
+        },
+        {
+          "rank": 2,
+          "score": 0.3831,
+          "chunk_id": "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+          "file_type": "docx",
+          "citation": "finance_policies_and_procedures.docx - section 12: 11. Departmental forecast submissions"
+        },
+        {
+          "rank": 3,
+          "score": 0.3623,
+          "chunk_id": "DOC_MD_001:section:11:decisions:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 11: Decisions"
+        },
+        {
+          "rank": 4,
+          "score": 0.3512,
+          "chunk_id": "DOC_MD_001:section:14:dec-003:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 14: DEC_003"
+        },
+        {
+          "rank": 5,
+          "score": 0.3495,
+          "chunk_id": "DOC_MD_001:section:01:front-matter:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 1: Front matter"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.5923,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_011: Forecast accuracy"
+        },
+        {
+          "rank": 2,
+          "score": 0.3217,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_006: Inventory days"
+        },
+        {
+          "rank": 3,
+          "score": 0.3067,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_002:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_002: Like-for-like sales growth"
+        },
+        {
+          "rank": 4,
+          "score": 0.2816,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_008:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_008: Online conversion rate"
+        },
+        {
+          "rank": 5,
+          "score": 0.2697,
+          "chunk_id": "DOC_JSON_001:kpi:KPI_FIN_013:chunk:01",
+          "file_type": "json",
+          "citation": "finance_kpi_dictionary.json - KPI KPI_FIN_013: Capital expenditure utilisation"
+        }
+      ]
+    },
+    {
+      "case_id": "markdown_marketing_overspend",
+      "file_type": "markdown",
+      "query": "How far above budget was March Marketing expenditure and what caused the overspend?",
+      "reference_answer": "Marketing expenditure was AUD 185,000 above budget because of an unplanned digital customer acquisition campaign.",
+      "expected_chunk_ids": [
+        "DOC_MD_001:section:06:marketing-expenditure:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_MD_001",
+        "granularity": "section"
+      },
+      "global_rank": 1,
+      "filtered_rank": 1,
+      "global_hit_at_5": true,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.6363,
+          "chunk_id": "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 6: Marketing expenditure"
+        },
+        {
+          "rank": 2,
+          "score": 0.6019,
+          "chunk_id": "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 7: Supply Chain expenditure"
+        },
+        {
+          "rank": 3,
+          "score": 0.5627,
+          "chunk_id": "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 8: Information Technology expenditure"
+        },
+        {
+          "rank": 4,
+          "score": 0.5232,
+          "chunk_id": "DOC_CSV_001:summary:2026-03:marketing:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-03, Marketing, department summary"
+        },
+        {
+          "rank": 5,
+          "score": 0.5225,
+          "chunk_id": "DOC_PDF_001:page:05:chunk:03",
+          "file_type": "pdf",
+          "citation": "harbour_retail_q3_management_report_fy2026.pdf - page 5: 4. March departmental cost performance"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.6363,
+          "chunk_id": "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 6: Marketing expenditure"
+        },
+        {
+          "rank": 2,
+          "score": 0.6019,
+          "chunk_id": "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 7: Supply Chain expenditure"
+        },
+        {
+          "rank": 3,
+          "score": 0.5627,
+          "chunk_id": "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 8: Information Technology expenditure"
+        },
+        {
+          "rank": 4,
+          "score": 0.4124,
+          "chunk_id": "DOC_MD_001:section:12:dec-001:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 12: DEC_001"
+        },
+        {
+          "rank": 5,
+          "score": 0.4013,
+          "chunk_id": "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 9: E-commerce performance"
+        }
+      ]
+    },
+    {
+      "case_id": "markdown_supply_chain_overspend",
+      "file_type": "markdown",
+      "query": "How far above budget was March Supply Chain expenditure and what caused the variance?",
+      "reference_answer": "Supply Chain expenditure was AUD 150,000 above budget because of freight surcharges and expedited shipments.",
+      "expected_chunk_ids": [
+        "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_MD_001",
+        "granularity": "section"
+      },
+      "global_rank": 13,
+      "filtered_rank": 1,
+      "global_hit_at_5": false,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.663,
+          "chunk_id": "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-01, Supply Chain, department summary"
+        },
+        {
+          "rank": 2,
+          "score": 0.6621,
+          "chunk_id": "DOC_CSV_001:summary:2026-03:supply-chain:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-03, Supply Chain, department summary"
+        },
+        {
+          "rank": 3,
+          "score": 0.6566,
+          "chunk_id": "DOC_CSV_001:summary:2026-02:supply-chain:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-02, Supply Chain, department summary"
+        },
+        {
+          "rank": 4,
+          "score": 0.6545,
+          "chunk_id": "DOC_CSV_001:summary:2025-09:supply-chain:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-09, Supply Chain, department summary"
+        },
+        {
+          "rank": 5,
+          "score": 0.6519,
+          "chunk_id": "DOC_CSV_001:summary:2025-12:supply-chain:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-12, Supply Chain, department summary"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.6428,
+          "chunk_id": "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 7: Supply Chain expenditure"
+        },
+        {
+          "rank": 2,
+          "score": 0.5326,
+          "chunk_id": "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 6: Marketing expenditure"
+        },
+        {
+          "rank": 3,
+          "score": 0.5245,
+          "chunk_id": "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 8: Information Technology expenditure"
+        },
+        {
+          "rank": 4,
+          "score": 0.3965,
+          "chunk_id": "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 9: E-commerce performance"
+        },
+        {
+          "rank": 5,
+          "score": 0.3805,
+          "chunk_id": "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01",
+          "file_type": "markdown",
+          "citation": "fp_and_a_forecast_meeting_2026-04-10.md - section 4: Full-year forecast summary"
+        }
+      ]
+    },
+    {
+      "case_id": "csv_retail_operations_july",
+      "file_type": "csv",
+      "query": "What were the July 2025 budget, actual expenditure and total variance for Retail Operations?",
+      "reference_answer": "Budget was AUD 2,150,000, actual expenditure was AUD 2,171,500 and the variance was AUD 21,500 or 1.00% unfavourable.",
+      "expected_chunk_ids": [
+        "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_CSV_001",
+        "granularity": "monthly_department_summary"
+      },
+      "global_rank": 9,
+      "filtered_rank": 4,
+      "global_hit_at_5": false,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.7175,
+          "chunk_id": "DOC_CSV_001:row:BVA_004:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-08, Retail Operations, Store labour"
+        },
+        {
+          "rank": 2,
+          "score": 0.7162,
+          "chunk_id": "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-08, Retail Operations, department summary"
+        },
+        {
+          "rank": 3,
+          "score": 0.7145,
+          "chunk_id": "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-01, Retail Operations, department summary"
+        },
+        {
+          "rank": 4,
+          "score": 0.7134,
+          "chunk_id": "DOC_CSV_001:row:BVA_013:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-11, Retail Operations, Store labour"
+        },
+        {
+          "rank": 5,
+          "score": 0.7133,
+          "chunk_id": "DOC_CSV_001:row:BVA_025:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-03, Retail Operations, Store labour"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.7162,
+          "chunk_id": "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-08, Retail Operations, department summary"
+        },
+        {
+          "rank": 2,
+          "score": 0.7145,
+          "chunk_id": "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-01, Retail Operations, department summary"
+        },
+        {
+          "rank": 3,
+          "score": 0.7033,
+          "chunk_id": "DOC_CSV_001:summary:2026-03:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-03, Retail Operations, department summary"
+        },
+        {
+          "rank": 4,
+          "score": 0.7024,
+          "chunk_id": "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-07, Retail Operations, department summary"
+        },
+        {
+          "rank": 5,
+          "score": 0.6974,
+          "chunk_id": "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-10, Retail Operations, department summary"
+        }
+      ]
+    },
+    {
+      "case_id": "csv_ecommerce_august",
+      "file_type": "csv",
+      "query": "What were the August 2025 budget, actual expenditure and total variance for E-commerce?",
+      "reference_answer": "Budget was AUD 640,000, actual expenditure was AUD 643,200 and the variance was AUD 3,200 or 0.50% unfavourable.",
+      "expected_chunk_ids": [
+        "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01"
+      ],
+      "filters": {
+        "document_id": "DOC_CSV_001",
+        "granularity": "monthly_department_summary"
+      },
+      "global_rank": 4,
+      "filtered_rank": 4,
+      "global_hit_at_5": true,
+      "filtered_hit_at_5": true,
+      "global_top5": [
+        {
+          "rank": 1,
+          "score": 0.7197,
+          "chunk_id": "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-01, E-commerce, department summary"
+        },
+        {
+          "rank": 2,
+          "score": 0.7195,
+          "chunk_id": "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-07, E-commerce, department summary"
+        },
+        {
+          "rank": 3,
+          "score": 0.7092,
+          "chunk_id": "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-11, E-commerce, department summary"
+        },
+        {
+          "rank": 4,
+          "score": 0.7078,
+          "chunk_id": "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-08, E-commerce, department summary"
+        },
+        {
+          "rank": 5,
+          "score": 0.7056,
+          "chunk_id": "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-10, E-commerce, department summary"
+        }
+      ],
+      "filtered_top5": [
+        {
+          "rank": 1,
+          "score": 0.7197,
+          "chunk_id": "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2026-01, E-commerce, department summary"
+        },
+        {
+          "rank": 2,
+          "score": 0.7195,
+          "chunk_id": "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-07, E-commerce, department summary"
+        },
+        {
+          "rank": 3,
+          "score": 0.7092,
+          "chunk_id": "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-11, E-commerce, department summary"
+        },
+        {
+          "rank": 4,
+          "score": 0.7078,
+          "chunk_id": "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-08, E-commerce, department summary"
+        },
+        {
+          "rank": 5,
+          "score": 0.7056,
+          "chunk_id": "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01",
+          "file_type": "csv",
+          "citation": "monthly_budget_vs_actual_fy2026.csv - 2025-10, E-commerce, department summary"
+        }
+      ]
+    }
+  ]
+}
