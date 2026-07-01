@@ -1,0 +1,293 @@
+﻿[
+  {
+    "case_id": "formal_pdf_q4_priorities_and_owners",
+    "file_type": "pdf",
+    "document_id": "DOC_PDF_001",
+    "difficulty": "hard",
+    "query_type": "multi_fact",
+    "tags": [
+      "priorities",
+      "owners",
+      "management_actions"
+    ],
+    "query": "Which four Q4 priorities were agreed, and who owns the priority to recover gross margin?",
+    "reference_answer": "The priorities were to recover gross margin through tighter promotional controls and supplier negotiations; reduce slow-moving inventory and improve working capital; reallocate Marketing spend toward channels with measurable conversion; and complete the Q4 forecast refresh while identifying actions to protect Adjusted EBITDA. Gross-margin recovery is owned by Olivia Bennett, James Carter and Liam O'Connor.",
+    "expected_chunk_ids": [
+      "DOC_PDF_001:page:08:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_PDF_001",
+      "granularity": "page"
+    },
+    "source_citations": [
+      "harbour_retail_q3_management_report_fy2026.pdf - page 8: 7. Q4 priorities and agreed actions"
+    ]
+  },
+  {
+    "case_id": "formal_pdf_march_opex_drivers",
+    "file_type": "pdf",
+    "document_id": "DOC_PDF_001",
+    "difficulty": "medium",
+    "query_type": "aggregation",
+    "tags": [
+      "budget_variance",
+      "operating_expenditure",
+      "numeric"
+    ],
+    "query": "How far above budget was March operating expenditure, and which two departments accounted for most of the unfavourable variance?",
+    "reference_answer": "March operating expenditure was AUD 393,000 above budget. Marketing contributed AUD 185,000 and Supply Chain AUD 150,000 of the unfavourable variance, a combined AUD 335,000.",
+    "expected_chunk_ids": [
+      "DOC_PDF_001:page:05:chunk:01",
+      "DOC_PDF_001:page:05:chunk:02"
+    ],
+    "filters": {
+      "document_id": "DOC_PDF_001",
+      "granularity": "page"
+    },
+    "source_citations": [
+      "harbour_retail_q3_management_report_fy2026.pdf - page 5: 4. March departmental cost performance"
+    ]
+  },
+  {
+    "case_id": "formal_pdf_channel_growth_comparison",
+    "file_type": "pdf",
+    "document_id": "DOC_PDF_001",
+    "difficulty": "medium",
+    "query_type": "comparison",
+    "tags": [
+      "sales_growth",
+      "channels",
+      "commercial_performance"
+    ],
+    "query": "Compare physical-store and E-commerce sales growth for the nine-month period and explain the main concern about E-commerce performance.",
+    "reference_answer": "Physical-store sales grew by 1.9%, while E-commerce sales grew by 14.8% and was the strongest-performing channel. The concern was that paid digital acquisition costs increased faster than online conversion, reducing the incremental return from Marketing investment.",
+    "expected_chunk_ids": [
+      "DOC_PDF_001:page:04:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_PDF_001",
+      "granularity": "page"
+    },
+    "source_citations": [
+      "harbour_retail_q3_management_report_fy2026.pdf - page 4: 3. Channel and commercial performance"
+    ]
+  },
+  {
+    "case_id": "formal_pdf_high_severity_risk",
+    "file_type": "pdf",
+    "document_id": "DOC_PDF_001",
+    "difficulty": "easy",
+    "query_type": "direct_fact",
+    "tags": [
+      "risk",
+      "owner",
+      "financial_impact"
+    ],
+    "query": "Which principal business risk was rated High, what financial impact could it have, and who owned it?",
+    "reference_answer": "The High-severity risk was that international freight costs might remain above budget during Q4. It could pressure gross margin and distribution expenses, and it was owned by Liam O'Connor.",
+    "expected_chunk_ids": [
+      "DOC_PDF_001:page:07:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_PDF_001",
+      "granularity": "page"
+    },
+    "source_citations": [
+      "harbour_retail_q3_management_report_fy2026.pdf - page 7: 6. Principal business risks"
+    ]
+  },
+  {
+    "case_id": "formal_pdf_q4_forecast_assumptions",
+    "file_type": "pdf",
+    "document_id": "DOC_PDF_001",
+    "difficulty": "hard",
+    "query_type": "multi_fact",
+    "tags": [
+      "forecast",
+      "assumptions",
+      "marketing",
+      "recruitment",
+      "information_technology"
+    ],
+    "query": "What assumptions were included in the updated Q4 forecast regarding freight, unplanned Marketing campaigns, recruitment and the delayed IT implementation?",
+    "reference_answer": "The logistics forecast uses current surcharge rates and revised shipment assumptions. No additional unplanned Marketing campaigns are assumed without Finance Director approval. Non-critical recruitment remains paused until the Q4 forecast refresh is approved. The delayed IT implementation remains in the forecast with updated timing and cash-flow assumptions.",
+    "expected_chunk_ids": [
+      "DOC_PDF_001:page:06:chunk:02"
+    ],
+    "filters": {
+      "document_id": "DOC_PDF_001",
+      "granularity": "page"
+    },
+    "source_citations": [
+      "harbour_retail_q3_management_report_fy2026.pdf - page 6: 5. Full-year forecast"
+    ]
+  },
+  {
+    "case_id": "formal_pdf_expense_variance_convention",
+    "file_type": "pdf",
+    "document_id": "DOC_PDF_001",
+    "difficulty": "easy",
+    "query_type": "definition",
+    "tags": [
+      "variance",
+      "accounting_convention",
+      "definition"
+    ],
+    "query": "How is expense variance calculated, and why is a positive expense variance classified as unfavourable?",
+    "reference_answer": "Expense variance equals actual expense less budget. A positive value is unfavourable because it means actual expenditure exceeded budget.",
+    "expected_chunk_ids": [
+      "DOC_PDF_001:page:09:chunk:02"
+    ],
+    "filters": {
+      "document_id": "DOC_PDF_001",
+      "granularity": "page"
+    },
+    "source_citations": [
+      "harbour_retail_q3_management_report_fy2026.pdf - page 9: 8. Appendix"
+    ]
+  },
+  {
+    "case_id": "formal_docx_capex_approval_300k",
+    "file_type": "docx",
+    "document_id": "DOC_DOCX_001",
+    "difficulty": "hard",
+    "query_type": "policy_application",
+    "tags": [
+      "capital_expenditure",
+      "approval",
+      "business_case"
+    ],
+    "query": "A capital expenditure project is expected to cost AUD 300,000. Who must approve it, and what supporting documentation is required?",
+    "reference_answer": "It requires approval from the Finance Director, Chief Executive Officer and Board of Directors. A documented business case is also required, covering expected benefits, implementation cost, timing, risks and financial return.",
+    "expected_chunk_ids": [
+      "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_DOCX_001",
+      "granularity": "section"
+    },
+    "source_citations": [
+      "finance_policies_and_procedures.docx - section 8: 7. Capital expenditure approval"
+    ]
+  },
+  {
+    "case_id": "formal_docx_reconciliation_timetable",
+    "file_type": "docx",
+    "document_id": "DOC_DOCX_001",
+    "difficulty": "medium",
+    "query_type": "multi_fact",
+    "tags": [
+      "balance_sheet",
+      "reconciliation",
+      "deadlines"
+    ],
+    "query": "When must balance-sheet reconciliations be prepared and reviewed, and what is required for reconciling items older than 60 days?",
+    "reference_answer": "Preparers must complete reconciliations by business day 7 and reviewers by business day 10. Reconciling items older than 60 days must have an owner and a documented resolution date.",
+    "expected_chunk_ids": [
+      "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_DOCX_001",
+      "granularity": "section"
+    },
+    "source_citations": [
+      "finance_policies_and_procedures.docx - section 10: 9. Balance sheet reconciliation timetable"
+    ]
+  },
+  {
+    "case_id": "formal_docx_forecast_commentary_threshold",
+    "file_type": "docx",
+    "document_id": "DOC_DOCX_001",
+    "difficulty": "medium",
+    "query_type": "policy_lookup",
+    "tags": [
+      "forecast",
+      "materiality",
+      "responsibility"
+    ],
+    "query": "Who is responsible for departmental forecast completeness, when is written commentary required, and what role does the Head of FP&A perform?",
+    "reference_answer": "Department Directors are responsible for the completeness and reasonableness of their forecasts. Written commentary is required for material forecast movements above AUD 100,000. The Head of FP&A consolidates and challenges departmental submissions before executive review.",
+    "expected_chunk_ids": [
+      "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_DOCX_001",
+      "granularity": "section"
+    },
+    "source_citations": [
+      "finance_policies_and_procedures.docx - section 12: 11. Departmental forecast submissions"
+    ]
+  },
+  {
+    "case_id": "formal_docx_purchase_order_requirements",
+    "file_type": "docx",
+    "document_id": "DOC_DOCX_001",
+    "difficulty": "hard",
+    "query_type": "policy_application",
+    "tags": [
+      "procurement",
+      "purchase_order",
+      "exemptions"
+    ],
+    "query": "When is a purchase order required, what anti-avoidance rule applies, and which types of expenditure are exempt?",
+    "reference_answer": "A purchase order must be approved before committing the company to goods or services above AUD 5,000. Purchases may not be divided into smaller amounts to avoid the threshold. Exemptions include payroll, taxes, rent, regulated utilities and emergency expenditure approved by the Finance Director.",
+    "expected_chunk_ids": [
+      "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_DOCX_001",
+      "granularity": "section"
+    },
+    "source_citations": [
+      "finance_policies_and_procedures.docx - section 7: 6. Purchase order requirements"
+    ]
+  },
+  {
+    "case_id": "formal_docx_accrual_policy",
+    "file_type": "docx",
+    "document_id": "DOC_DOCX_001",
+    "difficulty": "medium",
+    "query_type": "policy_lookup",
+    "tags": [
+      "accrual",
+      "threshold",
+      "supporting_documentation"
+    ],
+    "query": "When must an accrual be recognised, what is the minimum individual threshold, and how must it be supported and subsequently reviewed?",
+    "reference_answer": "An accrual is required when goods or services have been received but the supplier invoice has not been recorded. The minimum individual threshold is AUD 5,000. It must be supported by a purchase order, contract, supplier estimate or another reasonable calculation, reviewed monthly and reversed when the related invoice is recorded.",
+    "expected_chunk_ids": [
+      "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_DOCX_001",
+      "granularity": "section"
+    },
+    "source_citations": [
+      "finance_policies_and_procedures.docx - section 4: 3. Accrual recognition and review"
+    ]
+  },
+  {
+    "case_id": "formal_docx_manual_journal_controls",
+    "file_type": "docx",
+    "document_id": "DOC_DOCX_001",
+    "difficulty": "medium",
+    "query_type": "control_lookup",
+    "tags": [
+      "manual_journal",
+      "segregation_of_duties",
+      "approval"
+    ],
+    "query": "What documentation and segregation-of-duties controls apply to manual journals, and when is Financial Controller approval required?",
+    "reference_answer": "Every manual journal must include a clear description, calculation and supporting documentation. The preparer and approver must be different people, and preparers cannot approve their own journals. Journals above AUD 100,000 require Financial Controller approval.",
+    "expected_chunk_ids": [
+      "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_DOCX_001",
+      "granularity": "section"
+    },
+    "source_citations": [
+      "finance_policies_and_procedures.docx - section 9: 8. Manual journal preparation and approval"
+    ]
+  }
+]

@@ -1,0 +1,152 @@
+﻿[
+  {
+    "case_id": "formal_csv_people_culture_july",
+    "file_type": "csv",
+    "document_id": "DOC_CSV_001",
+    "difficulty": "easy",
+    "query_type": "numeric_lookup",
+    "tags": [
+      "people_culture",
+      "budget",
+      "actual",
+      "manager"
+    ],
+    "query": "Was People & Culture on budget in July 2025, and what were its budget, actual expenditure and responsible manager?",
+    "reference_answer": "People & Culture was on budget. Both budget and actual expenditure were AUD 480,000, and the responsible manager was Grace Lee.",
+    "expected_chunk_ids": [
+      "DOC_CSV_001:summary:2025-07:people-culture:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_CSV_001",
+      "granularity": "monthly_department_summary"
+    },
+    "source_citations": [
+      "monthly_budget_vs_actual_fy2026.csv - 2025-07, People & Culture, department summary"
+    ]
+  },
+  {
+    "case_id": "formal_csv_finance_september",
+    "file_type": "csv",
+    "document_id": "DOC_CSV_001",
+    "difficulty": "medium",
+    "query_type": "multi_fact",
+    "tags": [
+      "finance",
+      "budget",
+      "variance",
+      "categories"
+    ],
+    "query": "What was Finance's September 2025 budget performance, which expense categories were included, and who was responsible?",
+    "reference_answer": "Finance had a budget and actual expenditure of AUD 450,000, so the variance was zero and the department was on budget. The categories were Finance salaries, Audit and tax, and Shared finance services. Priya Nair was the responsible manager.",
+    "expected_chunk_ids": [
+      "DOC_CSV_001:summary:2025-09:finance:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_CSV_001",
+      "granularity": "monthly_department_summary"
+    },
+    "source_citations": [
+      "monthly_budget_vs_actual_fy2026.csv - 2025-09, Finance, department summary"
+    ]
+  },
+  {
+    "case_id": "formal_csv_marketing_january",
+    "file_type": "csv",
+    "document_id": "DOC_CSV_001",
+    "difficulty": "medium",
+    "query_type": "numeric_comparison",
+    "tags": [
+      "marketing",
+      "budget",
+      "forecast",
+      "variance"
+    ],
+    "query": "How did January 2026 Marketing expenditure compare with both budget and the pre-close forecast?",
+    "reference_answer": "Marketing budget, actual expenditure and the pre-close forecast were all AUD 500,000. Both the budget variance and the actual-versus-forecast variance were zero.",
+    "expected_chunk_ids": [
+      "DOC_CSV_001:summary:2026-01:marketing:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_CSV_001",
+      "granularity": "monthly_department_summary"
+    },
+    "source_citations": [
+      "monthly_budget_vs_actual_fy2026.csv - 2026-01, Marketing, department summary"
+    ]
+  },
+  {
+    "case_id": "formal_csv_it_august",
+    "file_type": "csv",
+    "document_id": "DOC_CSV_001",
+    "difficulty": "hard",
+    "query_type": "numeric_comparison",
+    "tags": [
+      "information_technology",
+      "favourable_variance",
+      "budget",
+      "forecast"
+    ],
+    "query": "For Information Technology in August 2025, how far was actual expenditure below budget and below the pre-close forecast?",
+    "reference_answer": "Actual expenditure was AUD 382,200 against a budget of AUD 390,000, producing a favourable variance of AUD 7,800 or 2.00%. It was also AUD 1,560 below the pre-close forecast of AUD 383,760.",
+    "expected_chunk_ids": [
+      "DOC_CSV_001:summary:2025-08:information-technology:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_CSV_001",
+      "granularity": "monthly_department_summary"
+    },
+    "source_citations": [
+      "monthly_budget_vs_actual_fy2026.csv - 2025-08, Information Technology, department summary"
+    ]
+  },
+  {
+    "case_id": "formal_csv_retail_operations_october",
+    "file_type": "csv",
+    "document_id": "DOC_CSV_001",
+    "difficulty": "medium",
+    "query_type": "multi_fact",
+    "tags": [
+      "retail_operations",
+      "unfavourable_variance",
+      "forecast",
+      "categories"
+    ],
+    "query": "Summarise October 2025 Retail Operations expenditure, including budget, actual, total variance, forecast variance and included categories.",
+    "reference_answer": "Retail Operations had a budget of AUD 2,200,000 and actual expenditure of AUD 2,233,000. The total variance was AUD 33,000 or 1.50% unfavourable. The pre-close forecast was AUD 2,226,400, so actual expenditure was AUD 6,600 above forecast. The categories were Store labour, Occupancy, and Repairs and maintenance.",
+    "expected_chunk_ids": [
+      "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_CSV_001",
+      "granularity": "monthly_department_summary"
+    },
+    "source_citations": [
+      "monthly_budget_vs_actual_fy2026.csv - 2025-10, Retail Operations, department summary"
+    ]
+  },
+  {
+    "case_id": "formal_csv_supply_chain_december",
+    "file_type": "csv",
+    "document_id": "DOC_CSV_001",
+    "difficulty": "hard",
+    "query_type": "numeric_comparison",
+    "tags": [
+      "supply_chain",
+      "budget",
+      "forecast",
+      "variance"
+    ],
+    "query": "How did December 2025 Supply Chain expenditure compare with budget and the pre-close forecast, and who was responsible?",
+    "reference_answer": "Supply Chain had a budget of AUD 1,420,000 and actual expenditure of AUD 1,505,200, an unfavourable variance of AUD 85,200 or 6.00%. Actual expenditure was AUD 17,040 above the pre-close forecast of AUD 1,488,160. Liam O'Connor was the responsible manager.",
+    "expected_chunk_ids": [
+      "DOC_CSV_001:summary:2025-12:supply-chain:chunk:01"
+    ],
+    "filters": {
+      "document_id": "DOC_CSV_001",
+      "granularity": "monthly_department_summary"
+    },
+    "source_citations": [
+      "monthly_budget_vs_actual_fy2026.csv - 2025-12, Supply Chain, department summary"
+    ]
+  }
+]
