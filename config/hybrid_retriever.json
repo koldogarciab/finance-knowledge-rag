@@ -1,0 +1,81 @@
+{
+  "retriever_type": "hybrid_dense_bm25_weighted_rrf",
+  "version": "1.0",
+  "dense_weight": 0.2,
+  "lexical_weight": 0.8,
+  "rrf_k": 10,
+  "bm25_k1": 1.5,
+  "bm25_b": 0.75,
+  "development_dataset": "tests/baseline_acceptance_cases.json",
+  "development_case_count": 10,
+  "development_metrics": {
+    "case_count": 10,
+    "mrr": 0.9,
+    "mean_rank": 1.2,
+    "median_rank": 1.0,
+    "worst_rank": 2,
+    "hit_at_1": 8,
+    "hit_rate_at_1": 0.8,
+    "hit_at_3": 10,
+    "hit_rate_at_3": 1.0,
+    "hit_at_5": 10,
+    "hit_rate_at_5": 1.0,
+    "hit_at_10": 10,
+    "hit_rate_at_10": 1.0
+  },
+  "tuning_report": "reports/hybrid_retriever_tuning.json",
+  "formal_benchmark_used_for_tuning": false,
+  "formal_dataset": "tests/formal_evaluation_cases.json",
+  "formal_dataset_sha256": "894144e2eee345fac4efc80474e6cd970d3912c98b7cd78c1d4c3f8adaff18d6",
+  "selection_status": "formally_evaluated_without_retuning",
+  "formal_evaluation": {
+    "report": "reports/formal_hybrid_retriever_evaluation.json",
+    "comparison_summary": "reports/formal_retriever_comparison.md",
+    "global_summary": {
+      "case_count": 30,
+      "retrieved_case_count": 30,
+      "miss_count": 0,
+      "mrr": 0.8107,
+      "mean_rank": 3.97,
+      "median_rank": 1.0,
+      "best_rank": 1,
+      "worst_rank": 34,
+      "hit_at_1": 23,
+      "hit_rate_at_1": 0.7667,
+      "hit_at_3": 24,
+      "hit_rate_at_3": 0.8,
+      "hit_at_5": 27,
+      "hit_rate_at_5": 0.9,
+      "hit_at_10": 27,
+      "hit_rate_at_10": 0.9
+    },
+    "filtered_summary": {
+      "case_count": 30,
+      "retrieved_case_count": 30,
+      "miss_count": 0,
+      "mrr": 0.9031,
+      "mean_rank": 1.47,
+      "median_rank": 1.0,
+      "best_rank": 1,
+      "worst_rank": 7,
+      "hit_at_1": 26,
+      "hit_rate_at_1": 0.8667,
+      "hit_at_3": 27,
+      "hit_rate_at_3": 0.9,
+      "hit_at_5": 29,
+      "hit_rate_at_5": 0.9667,
+      "hit_at_10": 30,
+      "hit_rate_at_10": 1.0
+    },
+    "global_outcomes": {
+      "wins": 7,
+      "ties": 18,
+      "losses": 5
+    },
+    "filtered_outcomes": {
+      "wins": 6,
+      "ties": 22,
+      "losses": 2
+    }
+  }
+}

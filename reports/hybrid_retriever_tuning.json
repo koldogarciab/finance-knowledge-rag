@@ -1,0 +1,2287 @@
+{
+  "status": "completed",
+  "development_dataset": "tests\\baseline_acceptance_cases.json",
+  "development_case_count": 10,
+  "formal_benchmark_used_for_tuning": false,
+  "selection_priority": [
+    "Hit@5",
+    "Hit@3",
+    "MRR",
+    "Hit@1",
+    "lower dense weight as final tie-break"
+  ],
+  "best_configuration": {
+    "dense_weight": 0.2,
+    "lexical_weight": 0.8,
+    "rrf_k": 10,
+    "summary": {
+      "case_count": 10,
+      "mrr": 0.9,
+      "mean_rank": 1.2,
+      "median_rank": 1.0,
+      "worst_rank": 2,
+      "hit_at_1": 8,
+      "hit_rate_at_1": 0.8,
+      "hit_at_3": 10,
+      "hit_rate_at_3": 1.0,
+      "hit_at_5": 10,
+      "hit_rate_at_5": 1.0,
+      "hit_at_10": 10,
+      "hit_rate_at_10": 1.0
+    },
+    "cases": [
+      {
+        "case_id": "pdf_ytd_revenue",
+        "file_type": "pdf",
+        "rank": 1,
+        "top_5_chunk_ids": [
+          "DOC_PDF_001:page:02:chunk:01",
+          "DOC_PDF_001:page:01:chunk:01",
+          "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+          "DOC_PDF_001:page:03:chunk:01",
+          "DOC_PDF_001:page:06:chunk:01"
+        ]
+      },
+      {
+        "case_id": "pdf_full_year_revenue_forecast",
+        "file_type": "pdf",
+        "rank": 1,
+        "top_5_chunk_ids": [
+          "DOC_PDF_001:page:06:chunk:01",
+          "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01",
+          "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01",
+          "DOC_PDF_001:page:06:chunk:02",
+          "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01"
+        ]
+      },
+      {
+        "case_id": "docx_month_end_close_deadline",
+        "file_type": "docx",
+        "rank": 1,
+        "top_5_chunk_ids": [
+          "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+          "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+          "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+          "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+          "DOC_DOCX_001:section:11:10-finance-document-retention:chunk:01"
+        ]
+      },
+      {
+        "case_id": "docx_operating_expenditure_approval",
+        "file_type": "docx",
+        "rank": 1,
+        "top_5_chunk_ids": [
+          "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+          "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+          "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+          "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+          "DOC_PDF_001:page:05:chunk:01"
+        ]
+      },
+      {
+        "case_id": "json_gross_margin_definition",
+        "file_type": "json",
+        "rank": 1,
+        "top_5_chunk_ids": [
+          "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+          "DOC_PDF_001:page:01:chunk:01",
+          "DOC_PDF_001:page:02:chunk:01",
+          "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+          "DOC_MD_001:section:18:closing-outlook:chunk:01"
+        ]
+      },
+      {
+        "case_id": "json_forecast_accuracy",
+        "file_type": "json",
+        "rank": 1,
+        "top_5_chunk_ids": [
+          "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+          "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+          "DOC_PDF_001:page:09:chunk:01",
+          "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+          "DOC_MD_001:section:14:dec-003:chunk:01"
+        ]
+      },
+      {
+        "case_id": "markdown_marketing_overspend",
+        "file_type": "markdown",
+        "rank": 2,
+        "top_5_chunk_ids": [
+          "DOC_PDF_001:page:05:chunk:03",
+          "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+          "DOC_PDF_001:page:05:chunk:02",
+          "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+          "DOC_PDF_001:page:05:chunk:01"
+        ]
+      },
+      {
+        "case_id": "markdown_supply_chain_overspend",
+        "file_type": "markdown",
+        "rank": 1,
+        "top_5_chunk_ids": [
+          "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+          "DOC_PDF_001:page:05:chunk:02",
+          "DOC_PDF_001:page:05:chunk:01",
+          "DOC_PDF_001:page:05:chunk:03",
+          "DOC_PDF_001:page:02:chunk:01"
+        ]
+      },
+      {
+        "case_id": "csv_retail_operations_july",
+        "file_type": "csv",
+        "rank": 2,
+        "top_5_chunk_ids": [
+          "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+          "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+          "DOC_DOCX_001:section:01:front-matter:chunk:01",
+          "DOC_CSV_001:summary:2025-09:retail-operations:chunk:01",
+          "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01"
+        ]
+      },
+      {
+        "case_id": "csv_ecommerce_august",
+        "file_type": "csv",
+        "rank": 1,
+        "top_5_chunk_ids": [
+          "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+          "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+          "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+          "DOC_DOCX_001:section:01:front-matter:chunk:01",
+          "DOC_CSV_001:summary:2025-09:e-commerce:chunk:01"
+        ]
+      }
+    ]
+  },
+  "configurations": [
+    {
+      "dense_weight": 0.2,
+      "lexical_weight": 0.8,
+      "rrf_k": 10,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.9,
+        "mean_rank": 1.2,
+        "median_rank": 1.0,
+        "worst_rank": 2,
+        "hit_at_1": 8,
+        "hit_rate_at_1": 0.8,
+        "hit_at_3": 10,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 10,
+        "hit_rate_at_5": 1.0,
+        "hit_at_10": 10,
+        "hit_rate_at_10": 1.0
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01",
+            "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01",
+            "DOC_PDF_001:page:06:chunk:02",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+            "DOC_DOCX_001:section:11:10-finance-document-retention:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+            "DOC_MD_001:section:18:closing-outlook:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_PDF_001:page:05:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_PDF_001:page:02:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_DOCX_001:section:01:front-matter:chunk:01",
+            "DOC_CSV_001:summary:2025-09:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_DOCX_001:section:01:front-matter:chunk:01",
+            "DOC_CSV_001:summary:2025-09:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.2,
+      "lexical_weight": 0.8,
+      "rrf_k": 30,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.9,
+        "mean_rank": 1.2,
+        "median_rank": 1.0,
+        "worst_rank": 2,
+        "hit_at_1": 8,
+        "hit_rate_at_1": 0.8,
+        "hit_at_3": 10,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 10,
+        "hit_rate_at_5": 1.0,
+        "hit_at_10": 10,
+        "hit_rate_at_10": 1.0
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01",
+            "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01",
+            "DOC_PDF_001:page:06:chunk:02",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+            "DOC_DOCX_001:section:11:10-finance-document-retention:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_PDF_001:page:05:chunk:01",
+            "DOC_CSV_001:row:BVA_082:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-09:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-09:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.35,
+      "lexical_weight": 0.65,
+      "rrf_k": 10,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.9,
+        "mean_rank": 1.2,
+        "median_rank": 1.0,
+        "worst_rank": 2,
+        "hit_at_1": 8,
+        "hit_rate_at_1": 0.8,
+        "hit_at_3": 10,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 10,
+        "hit_rate_at_5": 1.0,
+        "hit_at_10": 10,
+        "hit_rate_at_10": 1.0
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01",
+            "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01",
+            "DOC_PDF_001:page:06:chunk:02",
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:02:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_PDF_001:page:05:chunk:01",
+            "DOC_CSV_001:row:BVA_088:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-09:retail-operations:chunk:01",
+            "DOC_DOCX_001:section:01:front-matter:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.35,
+      "lexical_weight": 0.65,
+      "rrf_k": 30,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.9,
+        "mean_rank": 1.2,
+        "median_rank": 1.0,
+        "worst_rank": 2,
+        "hit_at_1": 8,
+        "hit_rate_at_1": 0.8,
+        "hit_at_3": 10,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 10,
+        "hit_rate_at_5": 1.0,
+        "hit_at_10": 10,
+        "hit_rate_at_10": 1.0
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01",
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01",
+            "DOC_PDF_001:page:06:chunk:02"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+            "DOC_MD_001:section:01:front-matter:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_CSV_001:row:BVA_088:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_CSV_001:row:BVA_082:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-09:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.2,
+      "lexical_weight": 0.8,
+      "rrf_k": 60,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.85,
+        "mean_rank": 1.3,
+        "median_rank": 1.0,
+        "worst_rank": 2,
+        "hit_at_1": 7,
+        "hit_rate_at_1": 0.7,
+        "hit_at_3": 10,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 10,
+        "hit_rate_at_5": 1.0,
+        "hit_at_10": 10,
+        "hit_rate_at_10": 1.0
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01",
+            "DOC_PDF_001:page:06:chunk:02",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01",
+            "DOC_DOCX_001:section:11:10-finance-document-retention:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_PDF_001:page:02:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_CSV_001:row:BVA_082:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-09:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-09:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.5,
+      "lexical_weight": 0.5,
+      "rrf_k": 10,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.8333,
+        "mean_rank": 1.4,
+        "median_rank": 1.0,
+        "worst_rank": 3,
+        "hit_at_1": 7,
+        "hit_rate_at_1": 0.7,
+        "hit_at_3": 10,
+        "hit_rate_at_3": 1.0,
+        "hit_at_5": 10,
+        "hit_rate_at_5": 1.0,
+        "hit_at_10": 10,
+        "hit_rate_at_10": 1.0
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_CSV_001:summary:2026-02:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+            "DOC_PDF_001:page:01:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_CSV_001:summary:2026-03:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-02:supply-chain:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01",
+            "DOC_CSV_001:row:BVA_004:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.35,
+      "lexical_weight": 0.65,
+      "rrf_k": 60,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.8167,
+        "mean_rank": 1.7,
+        "median_rank": 1.0,
+        "worst_rank": 6,
+        "hit_at_1": 7,
+        "hit_rate_at_1": 0.7,
+        "hit_at_3": 9,
+        "hit_rate_at_3": 0.9,
+        "hit_at_5": 9,
+        "hit_rate_at_5": 0.9,
+        "hit_at_10": 10,
+        "hit_rate_at_10": 1.0
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 6,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01",
+            "DOC_CSV_001:row:BVA_143:chunk:01",
+            "DOC_CSV_001:summary:2025-07:people-culture:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_MD_001:section:01:front-matter:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:03:chunk:02"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01",
+            "DOC_PDF_001:page:09:chunk:02"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_CSV_001:row:BVA_088:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_CSV_001:row:BVA_091:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-09:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.5,
+      "lexical_weight": 0.5,
+      "rrf_k": 30,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.791,
+        "mean_rank": 2.5,
+        "median_rank": 1.0,
+        "worst_rank": 13,
+        "hit_at_1": 7,
+        "hit_rate_at_1": 0.7,
+        "hit_at_3": 9,
+        "hit_rate_at_3": 0.9,
+        "hit_at_5": 9,
+        "hit_rate_at_5": 0.9,
+        "hit_at_10": 9,
+        "hit_rate_at_10": 0.9
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_PDF_001:page:06:chunk:01",
+            "DOC_PDF_001:page:05:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 13,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_CSV_001:summary:2025-07:people-culture:chunk:01",
+            "DOC_CSV_001:row:BVA_143:chunk:01",
+            "DOC_CSV_001:row:BVA_158:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:03:chunk:02",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_CSV_001:row:BVA_088:chunk:01",
+            "DOC_CSV_001:row:BVA_091:chunk:01",
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+            "DOC_PDF_001:page:05:chunk:02"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-09:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.5,
+      "lexical_weight": 0.5,
+      "rrf_k": 60,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.7879,
+        "mean_rank": 3.4,
+        "median_rank": 1.0,
+        "worst_rank": 22,
+        "hit_at_1": 7,
+        "hit_rate_at_1": 0.7,
+        "hit_at_3": 9,
+        "hit_rate_at_3": 0.9,
+        "hit_at_5": 9,
+        "hit_rate_at_5": 0.9,
+        "hit_at_10": 9,
+        "hit_rate_at_10": 0.9
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:03:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 22,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_CSV_001:summary:2025-07:people-culture:chunk:01",
+            "DOC_CSV_001:row:BVA_143:chunk:01",
+            "DOC_CSV_001:row:BVA_158:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:03:chunk:02",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_PDF_001:page:09:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_CSV_001:row:BVA_055:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_CSV_001:row:BVA_088:chunk:01",
+            "DOC_CSV_001:row:BVA_091:chunk:01",
+            "DOC_CSV_001:row:BVA_082:chunk:01",
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-03:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.65,
+      "lexical_weight": 0.35,
+      "rrf_k": 30,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.77,
+        "mean_rank": 4.3,
+        "median_rank": 1.0,
+        "worst_rank": 30,
+        "hit_at_1": 7,
+        "hit_rate_at_1": 0.7,
+        "hit_at_3": 9,
+        "hit_rate_at_3": 0.9,
+        "hit_at_5": 9,
+        "hit_rate_at_5": 0.9,
+        "hit_at_10": 9,
+        "hit_rate_at_10": 0.9
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-11:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-12:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 30,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_CSV_001:summary:2026-02:finance:chunk:01",
+            "DOC_CSV_001:summary:2025-08:finance:chunk:01",
+            "DOC_CSV_001:summary:2025-07:people-culture:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+            "DOC_PDF_001:page:03:chunk:02"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+            "DOC_PDF_001:page:09:chunk:02",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_CSV_001:row:BVA_055:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-03:supply-chain:chunk:01",
+            "DOC_CSV_001:row:BVA_088:chunk:01",
+            "DOC_CSV_001:summary:2026-02:supply-chain:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:row:BVA_004:chunk:01",
+            "DOC_CSV_001:summary:2026-03:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.65,
+      "lexical_weight": 0.35,
+      "rrf_k": 60,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.7687,
+        "mean_rank": 6.3,
+        "median_rank": 1.0,
+        "worst_rank": 50,
+        "hit_at_1": 7,
+        "hit_rate_at_1": 0.7,
+        "hit_at_3": 9,
+        "hit_rate_at_3": 0.9,
+        "hit_at_5": 9,
+        "hit_rate_at_5": 0.9,
+        "hit_at_10": 9,
+        "hit_rate_at_10": 0.9
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-11:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 50,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_CSV_001:summary:2025-07:people-culture:chunk:01",
+            "DOC_CSV_001:row:BVA_158:chunk:01",
+            "DOC_CSV_001:row:BVA_143:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+            "DOC_PDF_001:page:03:chunk:02"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+            "DOC_PDF_001:page:09:chunk:02",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_CSV_001:row:BVA_055:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_CSV_001:row:BVA_088:chunk:01",
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-03:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2025-09:supply-chain:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-03:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.65,
+      "lexical_weight": 0.35,
+      "rrf_k": 10,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.6488,
+        "mean_rank": 3.1,
+        "median_rank": 1.5,
+        "worst_rank": 14,
+        "hit_at_1": 5,
+        "hit_rate_at_1": 0.5,
+        "hit_at_3": 8,
+        "hit_rate_at_3": 0.8,
+        "hit_at_5": 9,
+        "hit_rate_at_5": 0.9,
+        "hit_at_10": 9,
+        "hit_rate_at_10": 0.9
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-11:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-12:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 14,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-02:finance:chunk:01",
+            "DOC_CSV_001:row:BVA_160:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_CSV_001:summary:2025-08:finance:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+            "DOC_DOCX_001:section:09:8-manual-journal-preparation-and-approval:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+            "DOC_CSV_001:row:BVA_055:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+            "DOC_PDF_001:page:09:chunk:02",
+            "DOC_MD_001:section:11:decisions:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-03:marketing:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-03:supply-chain:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-02:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2025-09:supply-chain:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 4,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:row:BVA_004:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-10:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.8,
+      "lexical_weight": 0.2,
+      "rrf_k": 60,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.6259,
+        "mean_rank": 13.5,
+        "median_rank": 1.5,
+        "worst_rank": 115,
+        "hit_at_1": 5,
+        "hit_rate_at_1": 0.5,
+        "hit_at_3": 7,
+        "hit_rate_at_3": 0.7,
+        "hit_at_5": 8,
+        "hit_rate_at_5": 0.8,
+        "hit_at_10": 9,
+        "hit_rate_at_10": 0.9
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-11:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-12:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 115,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_CSV_001:summary:2026-02:finance:chunk:01",
+            "DOC_CSV_001:summary:2025-08:finance:chunk:01",
+            "DOC_CSV_001:summary:2025-07:people-culture:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+            "DOC_MD_001:section:04:full-year-forecast-summary:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+            "DOC_PDF_001:page:09:chunk:02",
+            "DOC_MD_001:section:01:front-matter:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_CSV_001:summary:2026-03:marketing:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 6,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-03:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-02:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2025-09:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2025-12:supply-chain:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 4,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:row:BVA_004:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-03:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.8,
+      "lexical_weight": 0.2,
+      "rrf_k": 30,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.624,
+        "mean_rank": 9.3,
+        "median_rank": 1.5,
+        "worst_rank": 72,
+        "hit_at_1": 5,
+        "hit_rate_at_1": 0.5,
+        "hit_at_3": 7,
+        "hit_rate_at_3": 0.7,
+        "hit_at_5": 8,
+        "hit_rate_at_5": 0.8,
+        "hit_at_10": 9,
+        "hit_rate_at_10": 0.9
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-11:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-12:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 72,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-02:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01",
+            "DOC_CSV_001:summary:2025-08:finance:chunk:01",
+            "DOC_CSV_001:row:BVA_160:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_012:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+            "DOC_DOCX_001:section:05:4-prepayment-recognition:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+            "DOC_CSV_001:row:BVA_055:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+            "DOC_PDF_001:page:09:chunk:02",
+            "DOC_MD_001:section:01:front-matter:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_CSV_001:summary:2026-03:marketing:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 7,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-03:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-02:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2025-09:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2025-12:supply-chain:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 4,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:row:BVA_004:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01",
+            "DOC_CSV_001:row:BVA_013:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    },
+    {
+      "dense_weight": 0.8,
+      "lexical_weight": 0.2,
+      "rrf_k": 10,
+      "summary": {
+        "case_count": 10,
+        "mrr": 0.6208,
+        "mean_rank": 5.3,
+        "median_rank": 1.5,
+        "worst_rank": 31,
+        "hit_at_1": 5,
+        "hit_rate_at_1": 0.5,
+        "hit_at_3": 7,
+        "hit_rate_at_3": 0.7,
+        "hit_at_5": 8,
+        "hit_rate_at_5": 0.8,
+        "hit_at_10": 9,
+        "hit_rate_at_10": 0.9
+      },
+      "cases": [
+        {
+          "case_id": "pdf_ytd_revenue",
+          "file_type": "pdf",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_PDF_001:page:02:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-11:retail-operations:chunk:01",
+            "DOC_CSV_001:summary:2025-12:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "pdf_full_year_revenue_forecast",
+          "file_type": "pdf",
+          "rank": 31,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-09:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-02:finance:chunk:01",
+            "DOC_CSV_001:row:BVA_160:chunk:01",
+            "DOC_CSV_001:summary:2025-08:finance:chunk:01",
+            "DOC_CSV_001:summary:2026-01:marketing:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_month_end_close_deadline",
+          "file_type": "docx",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:03:2-month-end-close-timetable:chunk:01",
+            "DOC_JSON_001:kpi:KPI_FIN_006:chunk:01",
+            "DOC_DOCX_001:section:10:9-balance-sheet-reconciliation-timetable:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_MD_001:section:18:closing-outlook:chunk:01"
+          ]
+        },
+        {
+          "case_id": "docx_operating_expenditure_approval",
+          "file_type": "docx",
+          "rank": 2,
+          "top_5_chunk_ids": [
+            "DOC_DOCX_001:section:08:7-capital-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:06:5-operating-expenditure-approval:chunk:01",
+            "DOC_DOCX_001:section:04:3-accrual-recognition-and-review:chunk:01",
+            "DOC_DOCX_001:section:13:12-appendix-key-thresholds:chunk:01",
+            "DOC_DOCX_001:section:07:6-purchase-order-requirements:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_gross_margin_definition",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_003:chunk:01",
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_MD_001:section:09:e-commerce-performance:chunk:01",
+            "DOC_CSV_001:row:BVA_055:chunk:01"
+          ]
+        },
+        {
+          "case_id": "json_forecast_accuracy",
+          "file_type": "json",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_JSON_001:kpi:KPI_FIN_011:chunk:01",
+            "DOC_DOCX_001:section:12:11-departmental-forecast-submissions:chunk:01",
+            "DOC_MD_001:section:14:dec-003:chunk:01",
+            "DOC_MD_001:section:11:decisions:chunk:01",
+            "DOC_MD_001:section:01:front-matter:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_marketing_overspend",
+          "file_type": "markdown",
+          "rank": 1,
+          "top_5_chunk_ids": [
+            "DOC_MD_001:section:06:marketing-expenditure:chunk:01",
+            "DOC_MD_001:section:07:supply-chain-expenditure:chunk:01",
+            "DOC_MD_001:section:08:information-technology-expenditure:chunk:01",
+            "DOC_PDF_001:page:05:chunk:03",
+            "DOC_CSV_001:summary:2026-03:marketing:chunk:01"
+          ]
+        },
+        {
+          "case_id": "markdown_supply_chain_overspend",
+          "file_type": "markdown",
+          "rank": 7,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-03:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2026-02:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2025-09:supply-chain:chunk:01",
+            "DOC_CSV_001:summary:2025-12:supply-chain:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_retail_operations_july",
+          "file_type": "csv",
+          "rank": 5,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2025-08:retail-operations:chunk:01",
+            "DOC_CSV_001:row:BVA_004:chunk:01",
+            "DOC_CSV_001:summary:2026-01:retail-operations:chunk:01",
+            "DOC_CSV_001:row:BVA_013:chunk:01",
+            "DOC_CSV_001:summary:2025-07:retail-operations:chunk:01"
+          ]
+        },
+        {
+          "case_id": "csv_ecommerce_august",
+          "file_type": "csv",
+          "rank": 3,
+          "top_5_chunk_ids": [
+            "DOC_CSV_001:summary:2026-01:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-07:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-08:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-11:e-commerce:chunk:01",
+            "DOC_CSV_001:summary:2025-10:e-commerce:chunk:01"
+          ]
+        }
+      ]
+    }
+  ]
+}
