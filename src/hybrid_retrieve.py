@@ -38,6 +38,46 @@ def lexical_tokens(text: str) -> list[str]:
     ]
 
 
+MONTH_NUMBERS = {
+    "january": "01",
+    "february": "02",
+    "march": "03",
+    "april": "04",
+    "may": "05",
+    "june": "06",
+    "july": "07",
+    "august": "08",
+    "september": "09",
+    "october": "10",
+    "november": "11",
+    "december": "12",
+}
+
+MONTH_YEAR_PATTERN = re.compile(
+    r"\b(" + "|".join(MONTH_NUMBERS) + r")\s+(20\d{2})\b",
+    flags=re.IGNORECASE,
+)
+
+
+def expand_lexical_query(query: str) -> str:
+    """
+    Add canonical YYYY-MM aliases for natural-language month/year dates.
+
+    Structured CSV summaries store periods such as ``2025-08`` while
+    users normally ask for ``August 2025``. Adding the canonical alias
+    improves lexical recall without changing the dense query embedding.
+    """
+    aliases = [
+        f"{match.group(2)}-{MONTH_NUMBERS[match.group(1).casefold()]}"
+        for match in MONTH_YEAR_PATTERN.finditer(query)
+    ]
+
+    if not aliases:
+        return query
+
+    return query + " " + " ".join(dict.fromkeys(aliases))
+
+
 class BM25Index:
     """Small in-memory BM25 implementation for the local corpus."""
 
@@ -299,7 +339,7 @@ class HybridRetriever:
         )
 
         lexical_scores_all = self.bm25.scores(
-            clean_query
+            expand_lexical_query(clean_query)
         )
 
         dense_scores = dense_scores_all[

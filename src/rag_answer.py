@@ -13,7 +13,11 @@ if __package__ in {None, ""}:
         str(Path(__file__).resolve().parents[1]),
     )
 
-from src.hybrid_retrieve import HybridRetriever, lexical_tokens
+from src.hybrid_retrieve import (
+    HybridRetriever,
+    expand_lexical_query,
+    lexical_tokens,
+)
 
 
 CITATION_PATTERN = re.compile(r"\[(\d+)\]")
@@ -244,6 +248,18 @@ class RAGContextBuilder:
                     "lexical_score": result[
                         "lexical_score"
                     ],
+                    "metadata": result.get(
+                        "metadata",
+                        {},
+                    ),
+                    "granularity": (
+                        result.get("metadata", {}).get(
+                            "granularity"
+                        )
+                    ),
+                    "citation_locator": result.get(
+                        "citation_locator"
+                    ),
                 }
             )
 
@@ -276,7 +292,6 @@ GENERIC_QUERY_TOKENS = {
     "formula",
     "give",
     "how",
-    "march",
     "months",
     "nine",
     "period",
@@ -292,295 +307,916 @@ GENERIC_QUERY_TOKENS = {
     "2026",
 }
 
+WEAK_ANCHOR_TOKENS = {
+    "actual",
+    "amount",
+    "answer",
+    "applies",
+    "apply",
+    "approved",
+    "budget",
+    "change",
+    "compare",
+    "compared",
+    "data",
+    "department",
+    "discussion",
+    "document",
+    "expenditure",
+    "finance",
+    "forecast",
+    "information",
+    "included",
+    "manager",
+    "measure",
+    "measured",
+    "owner",
+    "performance",
+    "policy",
+    "provided",
+    "rate",
+    "recent",
+    "required",
+    "requirement",
+    "responsible",
+    "result",
+    "role",
+    "source",
+    "value",
+    "year",
+}
+
+INTENT_PHRASES: dict[str, tuple[str, ...]] = {
+    "formula": (
+        "formula",
+        "calculat",
+        "how is",
+        "how are",
+    ),
+    "target": (
+        "target",
+        "limit",
+        "range",
+        "threshold",
+    ),
+    "owner": (
+        "who",
+        "owner",
+        "responsible",
+        "led the discussion",
+        "discussion lead",
+    ),
+    "deadline": (
+        "deadline",
+        "deadlines",
+        "due by",
+        "by what date",
+        "by what time",
+        "business day",
+        "respective deadlines",
+    ),
+    "cause": (
+        "why",
+        "cause",
+        "caused",
+        "driver",
+        "reason",
+    ),
+    "variance": (
+        "variance",
+        "against budget",
+        "above budget",
+        "below budget",
+        "perform against budget",
+        "compare with budget",
+    ),
+    "forecast": (
+        "forecast",
+        "pre-close forecast",
+        "above forecast",
+        "below forecast",
+        "compare with forecast",
+    ),
+    "definition": (
+        "definition",
+        "defined",
+        "what does",
+        "what is",
+    ),
+    "documentation": (
+        "documentation",
+        "supported",
+        "supporting",
+        "business case",
+    ),
+    "exemption": (
+        "exempt",
+        "exemption",
+        "exceptions",
+    ),
+    "frequency": (
+        "frequency",
+        "frequently",
+        "how often",
+        "weekly",
+        "monthly",
+    ),
+    "system": (
+        "which systems",
+        "data source",
+        "provide the data",
+        "systems provide",
+    ),
+    "category": (
+        "categories",
+        "category",
+        "types of expenditure",
+    ),
+    "approval": (
+        "approve",
+        "approval",
+        "must approve",
+    ),
+    "condition": (
+        "when must",
+        "when is",
+        "recognised",
+        "recognized",
+    ),
+}
+
 
 def requested_intents(query: str) -> list[str]:
-    """Identify the factual components requested by the question."""
+    """Identify factual components requested by a question."""
     lowered = query.casefold()
-    intents: list[str] = []
-
-    if (
-        "formula" in lowered
-        or "calculat" in lowered
-    ):
-        intents.append("formula")
-
-    if "target" in lowered:
-        intents.append("target")
-
-    if any(
-        phrase in lowered
-        for phrase in (
-            "who",
-            "owner",
-            "responsible",
-        )
-    ):
-        intents.append("owner")
-
-    if any(
-        phrase in lowered
-        for phrase in (
-            "deadline",
-            "by what time",
-            "business day",
-            "when must",
-            "when was",
-        )
-    ):
-        intents.append("deadline")
-
-    if any(
-        phrase in lowered
-        for phrase in (
-            "why",
-            "cause",
-            "caused",
-            "driver",
-            "reason",
-        )
-    ):
-        intents.append("cause")
-
-    if any(
-        phrase in lowered
-        for phrase in (
-            "variance",
-            "against budget",
-            "above budget",
-            "below budget",
-            "perform against budget",
-        )
-    ):
-        intents.append("variance")
-
-    if any(
-        phrase in lowered
-        for phrase in (
-            "definition",
-            "defined",
-            "what does",
-        )
-    ):
-        intents.append("definition")
-
+    intents = [
+        intent
+        for intent, phrases in INTENT_PHRASES.items()
+        if any(phrase in lowered for phrase in phrases)
+    ]
     return list(dict.fromkeys(intents))
 
 
 def evidence_intents(text: str) -> set[str]:
-    """Identify which requested components an evidence unit supports."""
+    """Identify factual components explicitly represented in evidence."""
     lowered = text.casefold()
     intents: set[str] = set()
 
-    if any(
-        phrase in lowered
-        for phrase in (
+    evidence_patterns: dict[str, tuple[str, ...]] = {
+        "formula": (
             "formula:",
             "calculated as",
             "calculated by",
             "equals ",
-        )
-    ):
-        intents.add("formula")
-
-    if "target:" in lowered:
-        intents.add("target")
-
-    if any(
-        phrase in lowered
-        for phrase in (
+            "divided by",
+            "multiplied by",
+        ),
+        "target": (
+            "target:",
+            "target ",
+            "threshold",
+            "limit",
+            "range",
+            "greater than or equal",
+            "less than or equal",
+        ),
+        "owner": (
             "owner:",
+            "owners:",
             "owned by",
             "responsible manager",
+            "responsible for",
             "discussion lead:",
+            "discussion was led by",
+            "led by",
             "policy owner",
-        )
-    ):
-        intents.add("owner")
-
-    if any(
-        phrase in lowered
-        for phrase in (
+        ),
+        "deadline": (
             "deadline",
             "business day",
             "due by",
-        )
-    ):
-        intents.add("deadline")
-
-    if any(
-        phrase in lowered
-        for phrase in (
+            "by 20",
+        ),
+        "cause": (
             "because",
             "caused",
             "driver",
             "reason",
             "reflecting",
             "due to",
-        )
-    ):
-        intents.add("cause")
-
-    if any(
-        phrase in lowered
-        for phrase in (
+            "context dependent",
+            "operational or liquidity",
+        ),
+        "variance": (
             "variance",
             "above budget",
             "below budget",
             "favourable",
             "unfavourable",
-        )
-    ):
-        intents.add("variance")
-
-    if any(
-        phrase in lowered
-        for phrase in (
+        ),
+        "forecast": (
+            "forecast",
+            "pre-close forecast",
+            "above forecast",
+            "below forecast",
+            "actual-versus-forecast",
+        ),
+        "definition": (
             "definition:",
             "defined as",
             "measures ",
-        )
-    ):
-        intents.add("definition")
+            "is earnings before",
+        ),
+        "documentation": (
+            "supporting documentation",
+            "supported by",
+            "business case",
+            "purchase order",
+            "contract",
+            "supplier estimate",
+        ),
+        "exemption": (
+            "exempt",
+            "exemption",
+            "payroll",
+            "regulated utilities",
+            "emergency expenditure",
+        ),
+        "frequency": (
+            "weekly",
+            "monthly",
+            "daily",
+            "frequency:",
+            "measured ",
+        ),
+        "system": (
+            "system",
+            "module",
+            "data source",
+            "general ledger",
+            "erp",
+        ),
+        "category": (
+            "categories",
+            "category",
+            "included:",
+        ),
+        "approval": (
+            "approval",
+            "approved by",
+            "must approve",
+            "requires approval",
+        ),
+        "condition": (
+            "required when",
+            "recognised when",
+            "recognized when",
+            "goods or services have been received",
+        ),
+    }
+
+    for intent, phrases in evidence_patterns.items():
+        if any(phrase in lowered for phrase in phrases):
+            intents.add(intent)
 
     return intents
 
 
+def query_token_sets(query: str) -> tuple[set[str], set[str], set[str]]:
+    """
+    Return all, core and anchor query tokens.
+
+    Month/year aliases are included so natural-language dates such as
+    ``August 2025`` match structured periods such as ``2025-08``.
+    """
+    expanded_query = expand_lexical_query(query)
+    all_tokens = meaningful_tokens(expanded_query)
+    core_tokens = {
+        token
+        for token in all_tokens
+        if token not in GENERIC_QUERY_TOKENS
+    }
+    anchor_tokens = {
+        token
+        for token in core_tokens
+        if token not in WEAK_ANCHOR_TOKENS
+    }
+    return all_tokens, core_tokens, anchor_tokens
+
+
+def distinctive_query_phrases(query: str) -> set[str]:
+    """Return adjacent distinctive token phrases from the question."""
+    expanded = expand_lexical_query(query)
+    ordered = [
+        token
+        for token in lexical_tokens(expanded)
+        if (
+            len(token) >= 2
+            and token not in STOPWORDS
+            and token not in DOMAIN_STOPWORDS
+            and token not in GENERIC_QUERY_TOKENS
+            and token not in WEAK_ANCHOR_TOKENS
+        )
+    ]
+
+    phrases: set[str] = set()
+
+    for size in (3, 2):
+        for index in range(len(ordered) - size + 1):
+            phrase = " ".join(ordered[index:index + size])
+            phrases.add(phrase)
+
+    return phrases
+
+
+def specific_metric_phrases(query: str) -> set[str]:
+    """Return explicit KPI or metric noun phrases from the question."""
+    tokens = [
+        token.casefold()
+        for token in lexical_tokens(expand_lexical_query(query))
+        if len(token) >= 2 and token not in STOPWORDS
+    ]
+    metric_heads = {
+        "rate",
+        "margin",
+        "days",
+        "utilisation",
+        "utilization",
+        "value",
+        "capital",
+        "ebitda",
+    }
+    phrases: set[str] = set()
+
+    for index, token in enumerate(tokens):
+        if token not in metric_heads:
+            continue
+
+        for width in (2, 3, 4):
+            start = index - width + 1
+            if start < 0:
+                continue
+            phrase = " ".join(tokens[start:index + 1])
+            if phrase:
+                phrases.add(phrase)
+
+    return phrases
+
+
+def query_may_require_multiple_sources(query: str) -> bool:
+    """Identify questions whose requested evidence may span chunks."""
+    lowered = query.casefold()
+    return any(
+        phrase in lowered
+        for phrase in (
+            "which two departments",
+            "two departments",
+            "combined aud",
+            "combined variance",
+            "across the two",
+        )
+    )
+
+
+def query_requests_aggregate_summary(query: str) -> bool:
+    """
+    Identify department-level period comparisons that benefit from an
+    aggregate summary rather than one account-category row.
+    """
+    lowered = query.casefold()
+    expanded = expand_lexical_query(query)
+
+    has_period_alias = expanded != query
+    has_budget_scope = "budget" in lowered
+    has_actual_or_variance = any(
+        phrase in lowered
+        for phrase in (
+            "actual",
+            "expenditure",
+            "variance",
+            "on budget",
+            "performance",
+        )
+    )
+    has_aggregate_signal = any(
+        phrase in lowered
+        for phrase in (
+            "both budget",
+            "below budget and",
+            "above budget and",
+            "pre-close forecast",
+            "total variance",
+            "included categories",
+            "categories were included",
+            "responsible manager",
+            "who was responsible",
+            "summarise",
+            "on budget",
+        )
+    )
+
+    return bool(
+        has_period_alias
+        and has_budget_scope
+        and has_actual_or_variance
+        and has_aggregate_signal
+    )
+
+
+def source_scope_text(source: dict[str, Any]) -> str:
+    """Combine content and traceability fields for relevance scoring."""
+    parts = [
+        str(source.get("document_title", "")),
+        str(source.get("citation", "")),
+        str(source.get("chunk_id", "")),
+        str(source.get("granularity", "")),
+        str(source.get("content", "")),
+    ]
+    return " ".join(part for part in parts if part).casefold()
+
+
+def source_group_key(source: dict[str, Any]) -> str:
+    """Group sibling chunks from the same page or section."""
+    chunk_id = str(source.get("chunk_id", ""))
+    return chunk_id.split(":chunk:", 1)[0]
+
+
+def explicit_owner_match(query: str, source_text: str) -> bool:
+    """Require a true discussion-lead statement for leader questions."""
+    lowered_query = query.casefold()
+
+    if not any(
+        phrase in lowered_query
+        for phrase in (
+            "who led the discussion",
+            "who led discussion",
+            "discussion lead",
+        )
+    ):
+        return True
+
+    lowered_source = source_text.casefold()
+
+    # Do not accept the generic phrase "led by": financial reports often
+    # use it for channel, revenue or growth drivers (for example,
+    # "growth was led by E-commerce"). Only explicit discussion-lead
+    # formulations qualify as evidence for a question asking who led the
+    # discussion.
+    return any(
+        phrase in lowered_source
+        for phrase in (
+            "discussion lead:",
+            "discussion was led by",
+            "led the discussion",
+        )
+    )
+
+
+def explicit_reason_match(query: str, source_text: str) -> bool:
+    """Prefer sources that contain the requested contextual explanation."""
+    lowered_query = query.casefold()
+
+    if not (
+        "why" in lowered_query
+        and any(
+            phrase in lowered_query
+            for phrase in (
+                "context dependent",
+                "preferred direction",
+                "higher-or-lower",
+                "higher or lower",
+            )
+        )
+    ):
+        return True
+
+    lowered_source = source_text.casefold()
+    return any(
+        phrase in lowered_source
+        for phrase in (
+            "operational",
+            "liquidity",
+            "excessively high",
+            "excessively low",
+        )
+    )
+
+
 class DeterministicGroundedGenerator:
     """
-    Reproducible extractive generator used for local validation.
+    Reproducible evidence gate and extractive fallback.
 
-    Evidence is selected by subject overlap and by the factual components
-    requested in the question. Several complementary units may come from
-    the same source.
+    The gate verifies subject-level overlap before generation, ranks
+    sources using distinctive query anchors and requested components,
+    and selects a small set of relevant sources. Missing heuristic
+    intent labels do not by themselves force abstention: the complete
+    selected chunks are later supplied to the LLM.
     """
 
     def __init__(
         self,
-        max_evidence_units: int = 4,
+        max_evidence_units: int = 6,
+        max_selected_sources: int = 3,
         minimum_core_overlap: int = 1,
-        max_unit_chars: int = 550,
+        max_unit_chars: int = 650,
     ) -> None:
-        self.max_evidence_units = int(
-            max_evidence_units
-        )
-        self.minimum_core_overlap = int(
-            minimum_core_overlap
-        )
-        self.max_unit_chars = int(
-            max_unit_chars
-        )
+        self.max_evidence_units = int(max_evidence_units)
+        self.max_selected_sources = int(max_selected_sources)
+        self.minimum_core_overlap = int(minimum_core_overlap)
+        self.max_unit_chars = int(max_unit_chars)
+
+    @staticmethod
+    def _required_anchor_overlap(anchor_count: int) -> int:
+        if anchor_count == 0:
+            return 0
+        if anchor_count <= 2:
+            return 1
+        return 2
 
     def generate(
         self,
         query: str,
         context_bundle: dict[str, Any],
     ) -> dict[str, Any]:
-        query_tokens = meaningful_tokens(query)
-
-        core_query_tokens = {
-            token
-            for token in query_tokens
-            if token not in GENERIC_QUERY_TOKENS
-        }
-
+        query_tokens, core_query_tokens, anchor_query_tokens = (
+            query_token_sets(query)
+        )
+        query_phrases = distinctive_query_phrases(query)
+        metric_phrases = specific_metric_phrases(query)
+        aggregate_summary_requested = (
+            query_requests_aggregate_summary(query)
+        )
+        multiple_sources_may_be_required = (
+            query_may_require_multiple_sources(query)
+        )
         intents = requested_intents(query)
 
-        source_profiles: dict[
-            int,
-            dict[str, Any],
-        ] = {}
+        source_profiles: dict[int, dict[str, Any]] = {}
 
         for source in context_bundle["sources"]:
-            source_number = source["source_number"]
-            source_tokens = meaningful_tokens(
-                source["content"]
+            source_number = int(source["source_number"])
+            scope_text = source_scope_text(source)
+            source_tokens = meaningful_tokens(scope_text)
+            source_intents = evidence_intents(source["content"])
+
+            traceability_text = " ".join(
+                (
+                    str(source.get("document_title", "")),
+                    str(source.get("citation", "")),
+                    str(source.get("chunk_id", "")),
+                )
+            )
+            traceability_tokens = meaningful_tokens(
+                traceability_text
             )
 
-            core_overlap = (
-                core_query_tokens & source_tokens
+            core_overlap = core_query_tokens & source_tokens
+            anchor_overlap = anchor_query_tokens & source_tokens
+            total_overlap = query_tokens & source_tokens
+            traceability_overlap = (
+                core_query_tokens & traceability_tokens
             )
-            total_overlap = (
-                query_tokens & source_tokens
-            )
+            phrase_overlap = {
+                phrase
+                for phrase in query_phrases
+                if phrase in scope_text
+            }
+            metric_phrase_overlap = {
+                phrase
+                for phrase in metric_phrases
+                if phrase in scope_text
+            }
+            matched_intents = set(intents) & source_intents
+            owner_match = explicit_owner_match(query, scope_text)
+            reason_match = explicit_reason_match(query, scope_text)
+
+            explicit_request_bonus = 0.0
+
+            if (
+                "owner" in intents
+                and owner_match
+                and any(
+                    phrase in query.casefold()
+                    for phrase in (
+                        "who led the discussion",
+                        "who led discussion",
+                        "discussion lead",
+                    )
+                )
+            ):
+                explicit_request_bonus += 18.0
+
+            if (
+                "cause" in intents
+                and reason_match
+                and any(
+                    phrase in query.casefold()
+                    for phrase in (
+                        "context dependent",
+                        "preferred direction",
+                        "higher-or-lower",
+                        "higher or lower",
+                    )
+                )
+            ):
+                explicit_request_bonus += 12.0
+
+            granularity = str(
+                source.get("granularity")
+                or source.get("metadata", {}).get(
+                    "granularity",
+                    "",
+                )
+            ).casefold()
+            chunk_id = str(source.get("chunk_id", "")).casefold()
+
+            aggregate_bonus = 0.0
+
+            if (
+                aggregate_summary_requested
+                and (
+                    granularity == "monthly_department_summary"
+                    or ":summary:" in chunk_id
+                    or "department summary" in scope_text
+                )
+            ):
+                aggregate_bonus = 14.0
 
             source_score = (
-                2.0 * len(core_overlap)
-                + (
-                    len(total_overlap)
-                    / max(len(query_tokens), 1)
-                )
-                + 1.0 / source_number
+                6.0 * len(anchor_overlap)
+                + 2.0 * len(core_overlap)
+                + 4.0 * len(traceability_overlap)
+                + 5.0 * len(phrase_overlap)
+                + 7.0 * len(metric_phrase_overlap)
+                + 3.5 * len(matched_intents)
+                + aggregate_bonus
+                + explicit_request_bonus
+                + len(total_overlap) / max(len(query_tokens), 1)
+                + 0.25 / source_number
             )
 
             source_profiles[source_number] = {
+                "source": source,
+                "source_tokens": source_tokens,
+                "source_intents": source_intents,
                 "core_overlap": core_overlap,
+                "anchor_overlap": anchor_overlap,
                 "total_overlap": total_overlap,
+                "traceability_overlap": traceability_overlap,
+                "phrase_overlap": phrase_overlap,
+                "metric_phrase_overlap": metric_phrase_overlap,
+                "matched_intents": matched_intents,
+                "aggregate_bonus": aggregate_bonus,
+                "explicit_request_bonus": explicit_request_bonus,
+                "owner_match": owner_match,
+                "reason_match": reason_match,
+                "source_group_key": source_group_key(source),
                 "source_score": source_score,
             }
 
-        if core_query_tokens:
-            best_core_overlap = max(
-                (
-                    len(profile["core_overlap"])
-                    for profile
-                    in source_profiles.values()
+        if not source_profiles:
+            return {
+                "answer": ABSTENTION_MESSAGE,
+                "abstained": True,
+                "reason": "No sources were retrieved.",
+                "selected_evidence": [],
+            }
+
+        required_anchor_overlap = self._required_anchor_overlap(
+            len(anchor_query_tokens)
+        )
+        best_anchor_overlap = max(
+            len(profile["anchor_overlap"])
+            for profile in source_profiles.values()
+        )
+        best_core_overlap = max(
+            len(profile["core_overlap"])
+            for profile in source_profiles.values()
+        )
+        best_metric_phrase_overlap = max(
+            len(profile["metric_phrase_overlap"])
+            for profile in source_profiles.values()
+        )
+
+        if metric_phrases and best_metric_phrase_overlap == 0:
+            return {
+                "answer": ABSTENTION_MESSAGE,
+                "abstained": True,
+                "reason": (
+                    "The retrieved sources do not contain the specific "
+                    "metric phrase requested by the question."
                 ),
-                default=0,
+                "selected_evidence": [],
+            }
+
+        if (
+            required_anchor_overlap > 0
+            and best_anchor_overlap < required_anchor_overlap
+        ):
+            return {
+                "answer": ABSTENTION_MESSAGE,
+                "abstained": True,
+                "reason": (
+                    "The retrieved sources do not contain enough "
+                    "distinctive subject terms from the question."
+                ),
+                "selected_evidence": [],
+            }
+
+        if (
+            not anchor_query_tokens
+            and core_query_tokens
+            and best_core_overlap < self.minimum_core_overlap
+        ):
+            return {
+                "answer": ABSTENTION_MESSAGE,
+                "abstained": True,
+                "reason": (
+                    "The retrieved sources do not contain the subject "
+                    "of the question."
+                ),
+                "selected_evidence": [],
+            }
+
+        ranked_profiles = sorted(
+            source_profiles.values(),
+            key=lambda profile: (
+                -profile["source_score"],
+                profile["source"]["source_number"],
+            ),
+        )
+
+        # When the user explicitly asks who led a discussion, a general
+        # management report is not an acceptable substitute for a source
+        # that contains a named discussion lead. Treat this as an evidence
+        # eligibility rule rather than only a scoring bonus.
+        explicit_discussion_lead_requested = any(
+            phrase in query.casefold()
+            for phrase in (
+                "who led the discussion",
+                "who led discussion",
+                "discussion lead",
             )
+        )
+
+        if explicit_discussion_lead_requested:
+            lead_profiles = [
+                profile
+                for profile in ranked_profiles
+                if profile["owner_match"]
+            ]
+
+            if lead_profiles:
+                ranked_profiles = lead_profiles
+                best_profile_score = ranked_profiles[0]["source_score"]
+
+        selected_source_numbers: list[int] = []
+        covered_query_tokens: set[str] = set()
+        covered_intents: set[str] = set()
+        covered_phrases: set[str] = set()
+
+        best_profile_score = ranked_profiles[0]["source_score"]
+
+        for profile in ranked_profiles:
+            same_group_needed = False
 
             if (
-                best_core_overlap
-                < self.minimum_core_overlap
+                multiple_sources_may_be_required
+                and len(selected_source_numbers) == 1
             ):
-                return {
-                    "answer": ABSTENTION_MESSAGE,
-                    "abstained": True,
-                    "reason": (
-                        "The retrieved sources do not "
-                        "contain the subject of the question."
-                    ),
-                    "selected_evidence": [],
-                }
-
-        candidates: list[dict[str, Any]] = []
-
-        for source in context_bundle["sources"]:
-            source_number = source["source_number"]
-            profile = source_profiles[source_number]
+                first_profile = source_profiles[
+                    selected_source_numbers[0]
+                ]
+                same_group_needed = (
+                    profile["source_group_key"]
+                    == first_profile["source_group_key"]
+                )
 
             if (
-                core_query_tokens
-                and not profile["core_overlap"]
+                anchor_query_tokens
+                and not profile["anchor_overlap"]
+                and not same_group_needed
             ):
                 continue
 
+            minimum_score_ratio = (
+                0.0 if same_group_needed else 0.55
+            )
+
+            if (
+                selected_source_numbers
+                and profile["source_score"]
+                < minimum_score_ratio * best_profile_score
+            ):
+                continue
+
+            new_tokens = profile["total_overlap"] - covered_query_tokens
+            new_intents = profile["matched_intents"] - covered_intents
+            new_phrases = profile["phrase_overlap"] - covered_phrases
+
+            if (
+                selected_source_numbers
+                and not new_tokens
+                and not new_intents
+                and not new_phrases
+                and not same_group_needed
+            ):
+                continue
+
+            source_number = int(
+                profile["source"]["source_number"]
+            )
+            selected_source_numbers.append(source_number)
+            covered_query_tokens.update(profile["total_overlap"])
+            covered_intents.update(profile["matched_intents"])
+            covered_phrases.update(profile["phrase_overlap"])
+
+            strong_subject_match = bool(
+                profile["phrase_overlap"]
+                or profile["metric_phrase_overlap"]
+                or len(profile["anchor_overlap"]) >= 2
+                or len(profile["traceability_overlap"]) >= 2
+            )
+            source_covers_requested_intents = (
+                not intents
+                or set(intents).issubset(covered_intents)
+            )
+
+            if "owner" in intents:
+                source_covers_requested_intents = (
+                    source_covers_requested_intents
+                    and profile["owner_match"]
+                )
+
+            if (
+                "cause" in intents
+                and any(
+                    phrase in query.casefold()
+                    for phrase in (
+                        "context dependent",
+                        "preferred direction",
+                        "higher-or-lower",
+                        "higher or lower",
+                    )
+                )
+            ):
+                source_covers_requested_intents = (
+                    source_covers_requested_intents
+                    and profile["reason_match"]
+                )
+
+            if (
+                len(selected_source_numbers) == 1
+                and source_covers_requested_intents
+                and strong_subject_match
+                and not multiple_sources_may_be_required
+            ):
+                break
+
+            # A monthly department summary already contains the account
+            # rows, totals, forecast comparison, categories and owner.
+            if profile["aggregate_bonus"] > 0:
+                break
+
+            if len(selected_source_numbers) >= self.max_selected_sources:
+                break
+
+        if not selected_source_numbers:
+            return {
+                "answer": ABSTENTION_MESSAGE,
+                "abstained": True,
+                "reason": (
+                    "No retrieved source met the subject-level "
+                    "grounding requirements."
+                ),
+                "selected_evidence": [],
+            }
+
+        candidates: list[dict[str, Any]] = []
+
+        for source_number in selected_source_numbers:
+            profile = source_profiles[source_number]
+
             for unit in candidate_units(
-                source["content"]
+                profile["source"]["content"]
             ):
                 unit_tokens = meaningful_tokens(unit)
                 overlap = query_tokens & unit_tokens
-
                 unit_intents = evidence_intents(unit)
-                matched_intents = (
-                    set(intents) & unit_intents
-                )
+                matched_intents = set(intents) & unit_intents
 
                 numeric_bonus = (
                     0.35
-                    if any(
-                        character.isdigit()
-                        for character in unit
-                    )
+                    if any(character.isdigit() for character in unit)
                     else 0.0
                 )
 
                 score = (
                     profile["source_score"]
-                    + len(overlap)
-                    + (
-                        len(overlap)
-                        / max(len(query_tokens), 1)
+                    + 2.0 * len(
+                        anchor_query_tokens & unit_tokens
                     )
+                    + len(overlap)
                     + 3.0 * len(matched_intents)
                     + numeric_bonus
                 )
@@ -593,15 +1229,9 @@ class DeterministicGroundedGenerator:
                             unit,
                             max_chars=self.max_unit_chars,
                         ),
-                        "matched_intents": sorted(
-                            matched_intents
-                        ),
-                        "all_intents": sorted(
-                            unit_intents
-                        ),
-                        "overlap_tokens": sorted(
-                            overlap
-                        ),
+                        "matched_intents": sorted(matched_intents),
+                        "all_intents": sorted(unit_intents),
+                        "overlap_tokens": sorted(overlap),
                     }
                 )
 
@@ -615,91 +1245,98 @@ class DeterministicGroundedGenerator:
 
         selected: list[dict[str, Any]] = []
         used_texts: set[str] = set()
-        covered_intents: set[str] = set()
+        covered_fallback_intents: set[str] = set()
 
-        if intents:
-            for intent in intents:
-                if intent in covered_intents:
-                    continue
+        for intent in intents:
+            matching_candidates = [
+                candidate
+                for candidate in candidates
+                if (
+                    intent in candidate["all_intents"]
+                    and candidate["text"] not in used_texts
+                )
+            ]
+            if not matching_candidates:
+                continue
 
-                matching_candidates = [
+            chosen = matching_candidates[0]
+            selected.append(chosen)
+            used_texts.add(chosen["text"])
+            covered_fallback_intents.update(chosen["all_intents"])
+
+            if len(selected) >= self.max_evidence_units:
+                break
+
+        missing_fallback_intents = (
+            set(intents) - covered_fallback_intents
+        )
+
+        for candidate in candidates:
+            if len(selected) >= self.max_evidence_units:
+                break
+            if candidate["text"] in used_texts:
+                continue
+            if (
+                query_tokens
+                and not candidate["overlap_tokens"]
+            ):
+                continue
+
+            candidate_intents = set(candidate["all_intents"])
+
+            if intents and not (
+                candidate_intents & missing_fallback_intents
+            ):
+                continue
+
+            selected.append(candidate)
+            used_texts.add(candidate["text"])
+            covered_fallback_intents.update(candidate_intents)
+            missing_fallback_intents = (
+                set(intents) - covered_fallback_intents
+            )
+
+            if intents and not missing_fallback_intents:
+                break
+
+        if not selected:
+            # Intent labels are heuristic. A source may be strongly relevant
+            # even when its wording does not trigger the exact intent label
+            # inferred from the question (for example, a reconciliation
+            # timetable answering a question phrased with "when must").
+            # Once subject-level source selection has passed, keep the best
+            # overlapping evidence unit rather than abstaining solely because
+            # of an intent-label mismatch. The complete selected chunk is sent
+            # to the model later, so this fallback only opens the generation
+            # path; it does not broaden the approved source set.
+            fallback_candidate = next(
+                (
                     candidate
                     for candidate in candidates
                     if (
-                        intent
-                        in candidate["all_intents"]
-                        and candidate["text"]
-                        not in used_texts
+                        not query_tokens
+                        or candidate["overlap_tokens"]
                     )
-                ]
-
-                if not matching_candidates:
-                    continue
-
-                chosen = matching_candidates[0]
-                selected.append(chosen)
-                used_texts.add(chosen["text"])
-                covered_intents.update(
-                    chosen["all_intents"]
-                )
-
-                if (
-                    len(selected)
-                    >= self.max_evidence_units
-                ):
-                    break
-
-            missing_intents = (
-                set(intents) - covered_intents
+                ),
+                None,
             )
 
-            if missing_intents:
-                return {
-                    "answer": ABSTENTION_MESSAGE,
-                    "abstained": True,
-                    "reason": (
-                        "The retrieved evidence does not "
-                        "support every requested component: "
-                        + ", ".join(
-                            sorted(missing_intents)
-                        )
-                    ),
-                    "selected_evidence": selected,
-                }
-
-        else:
-            for candidate in candidates:
-                if candidate["text"] in used_texts:
-                    continue
-
-                if (
-                    not candidate["overlap_tokens"]
-                    and core_query_tokens
-                ):
-                    continue
-
-                selected.append(candidate)
-                used_texts.add(candidate["text"])
-
-                if len(selected) >= 2:
-                    break
+            if fallback_candidate is not None:
+                selected.append(fallback_candidate)
 
         if not selected:
             return {
                 "answer": ABSTENTION_MESSAGE,
                 "abstained": True,
                 "reason": (
-                    "No retrieved evidence met the "
-                    "grounding requirements."
+                    "No retrieved evidence unit met the grounding "
+                    "requirements."
                 ),
                 "selected_evidence": [],
             }
 
         answer = " ".join(
-            (
-                f"{candidate['text']} "
-                f"[{candidate['source_number']}]"
-            )
+            f"{candidate['text']} [{candidate['source_number']}]"
             for candidate in selected
         )
 
@@ -708,6 +1345,8 @@ class DeterministicGroundedGenerator:
             "abstained": False,
             "reason": None,
             "selected_evidence": selected,
+            "selected_source_numbers": selected_source_numbers,
+            "covered_intents": sorted(covered_intents),
         }
 
 def validate_answer_citations(

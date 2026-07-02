@@ -1,0 +1,125 @@
+[
+  {
+    "case_id": "unsupported_finance_carbon_emissions_target",
+    "category": "unsupported_finance",
+    "difficulty": "medium",
+    "query_type": "missing_kpi",
+    "tags": [
+      "carbon_emissions",
+      "target",
+      "sustainability"
+    ],
+    "query": "What was Harbour Retail Group's carbon emissions reduction target for FY2025/26?",
+    "reason_unsupported": "The synthetic finance corpus contains no carbon-emissions KPI or sustainability target."
+  },
+  {
+    "case_id": "unsupported_finance_debt_covenant",
+    "category": "unsupported_finance",
+    "difficulty": "hard",
+    "query_type": "missing_policy",
+    "tags": [
+      "debt",
+      "covenant",
+      "leverage"
+    ],
+    "query": "What maximum net-debt-to-EBITDA covenant applied to Harbour Retail Group's bank facilities?",
+    "reason_unsupported": "The corpus contains no lending agreement or debt-covenant terms."
+  },
+  {
+    "case_id": "unsupported_finance_dividend_policy",
+    "category": "unsupported_finance",
+    "difficulty": "medium",
+    "query_type": "missing_policy",
+    "tags": [
+      "dividend",
+      "payout_ratio",
+      "policy"
+    ],
+    "query": "What dividend payout ratio did Harbour Retail Group's policy require?",
+    "reason_unsupported": "The corpus contains no dividend policy or payout-ratio requirement."
+  },
+  {
+    "case_id": "unsupported_finance_credit_rating",
+    "category": "unsupported_finance",
+    "difficulty": "medium",
+    "query_type": "missing_fact",
+    "tags": [
+      "credit_rating",
+      "agency",
+      "debt"
+    ],
+    "query": "What external credit rating did Harbour Retail Group receive, and which agency issued it?",
+    "reason_unsupported": "The corpus contains no external credit rating or rating-agency decision."
+  },
+  {
+    "case_id": "unsupported_finance_effective_tax_rate",
+    "category": "unsupported_finance",
+    "difficulty": "hard",
+    "query_type": "missing_metric",
+    "tags": [
+      "tax",
+      "effective_tax_rate",
+      "forecast"
+    ],
+    "query": "What effective corporate tax rate was forecast for Harbour Retail Group for FY2025/26?",
+    "reason_unsupported": "The corpus contains no effective corporate tax-rate forecast."
+  },
+  {
+    "case_id": "unsupported_general_weather",
+    "category": "out_of_domain",
+    "difficulty": "easy",
+    "query_type": "out_of_domain",
+    "tags": [
+      "weather"
+    ],
+    "query": "What will the weather be in Sydney tomorrow?",
+    "reason_unsupported": "Weather information is outside the finance corpus."
+  },
+  {
+    "case_id": "unsupported_general_recipe",
+    "category": "out_of_domain",
+    "difficulty": "easy",
+    "query_type": "out_of_domain",
+    "tags": [
+      "cooking",
+      "recipe"
+    ],
+    "query": "Which ingredients are needed to make a traditional paella?",
+    "reason_unsupported": "Cooking instructions are outside the finance corpus."
+  },
+  {
+    "case_id": "unsupported_general_sports",
+    "category": "out_of_domain",
+    "difficulty": "medium",
+    "query_type": "out_of_domain",
+    "tags": [
+      "sports",
+      "football"
+    ],
+    "query": "Who won the most recent UEFA Champions League final and what was the score?",
+    "reason_unsupported": "Sports results are outside the finance corpus."
+  },
+  {
+    "case_id": "unsupported_general_astronomy",
+    "category": "out_of_domain",
+    "difficulty": "easy",
+    "query_type": "out_of_domain",
+    "tags": [
+      "astronomy"
+    ],
+    "query": "Which planet in the Solar System has the shortest year?",
+    "reason_unsupported": "Astronomy facts are outside the finance corpus."
+  },
+  {
+    "case_id": "unsupported_general_medical",
+    "category": "out_of_domain",
+    "difficulty": "hard",
+    "query_type": "out_of_domain",
+    "tags": [
+      "medical",
+      "dosage"
+    ],
+    "query": "What dosage of amoxicillin should an adult take for a bacterial infection?",
+    "reason_unsupported": "Medical guidance is outside the finance corpus."
+  }
+]
